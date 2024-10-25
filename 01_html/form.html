@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form태그와 관련 태그 사용해보기</title>
+</head>
+<body>
+    
+</body>
+      <form>
+        text <input type="text" placeholder="이름을 적으세요" />
+
+        <br />
+        <label for="emailID">email</label>
+        <input type="email" id="emailID" placeholder="example@naver.com">
+
+        <br />
+        <label> 
+            password <input type="password" placeholder="비밀번호 적으세요">
+        </label>
+
+        <br />
+        <input type="color"  />
+        <input type="range" />
+        <input type="date"  />
+        <input type="file"  />
+        <input type="number"  />
+        <input type="button" value="버튼">
+        <input type="submit" value="제출버튼">
+        <button>버튼(기본적으로 submmit)</button>
+        <button type="버튼"></button>
+        <br />
+        <br />
+        <h5>다음중 input type이 아닌것은?(모두 고르시오)</h5>
+        <input type="checkbox" name="아무거나해도되는데input"> text
+        <input type="checkbox" name="아무거나해도되는데input"> click
+        <input type="checkbox" name="아무거나해도되는데input"> date
+
+        <h5>다음 중 img 태그의 속성인 것은?</h5>
+        <label>
+            <input type="radio" name="img" />
+            title
+        </label>
+        <label>
+            <input type="radio" name="img" />
+            value
+        </label>
+        <label>
+            <input type="radio" name="img" />
+            mouse
+        </label>
+        <input type="radio" name="img" id="alt" />
+        <label for="alt">alt</label>
+
+        <input type="radio" name="img" id="type" />
+        <label for="type">type</label>
+
+        <br />
+
+        <!--select-->
+        <select name="flower">
+            <optgroup></optgroup>
+            <option value="장미">장미</option>
+            <option value="동백꽃">동백꽃</option>
+            <option value="목련">목련</option>
+        </select>
+
+        
+
+
+       
+      </form>
+</html>

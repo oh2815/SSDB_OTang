@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table태그를 사용해 보아요</title>
+</head>
+<body>
+    <table border="1" width="130" heitgh="130" align="center" bgcolor="skyblue" bodercolor="yellow">
+        <caption>table 만들어보기</caption>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+    </table>
+
+    <table border="1" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>메뉴</th>
+            <th>가격</th>
+            <th>비고</th>
+        </tr>
+        <tr>
+            <td>떡볶이</td>
+            <td>5000원</td>
+            <td>2인이상 주문 가능</td>
+        </tr>
+        <tr>
+            <td>참치김밥</td>
+            <td>4000원</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>순대</td>
+            <td>4000원</td>
+            <td>간, 허파 있어요.</td>
+        </tr>
+    </table>
+
+    <h3>new 가격표</h3>
+
+    <table border="1" cellspacing="0" cellpadding="10">
+        <tr>
+            <th>메뉴</th>
+            <th>가격</th>
+            <th>비고</th>
+        </tr>
+        <tr>
+            <td>떡볶이</td>
+            <td>5000원</td>
+            <td>2인이상 주문 가능</td>
+        </tr>
+        <tr>
+            <td>참치김밥</td>
+            <td rowspan="2">4000원</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>치즈김밥</td>
+            <!-- <td>4000원</td> -->
+            <td>신메뉴</td>
+        </tr>
+        <tr>
+            <td colspan="3">순대(품절)</td>
+            <!-- <td>4000원</td> -->
+            <!-- <td>간, 허파 있어요.</td> -->
+        </tr>
+    </table>
+    
+</body>
+</html>

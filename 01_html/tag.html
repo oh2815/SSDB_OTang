@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>태그 사용해보기!</title>
+</head>
+
+<body style="padding-bottom: 200px;">
+  <h1>안녕하세요. h1입니다..</h1>
+  <h2>안녕하세요. h2입니다..</h2>
+  <h3>안녕하세요. h3입니다..</h3>
+  <h4>안녕하세요. h4입니다..</h4>
+  <h5>안녕하세요. h5입니다..</h5>
+  <h6>안녕하세요. h6입니다..</h6>
+  <p>
+    오늘은 날씨가 좋습니다. 첫번째 수업인 html.. <br />
+    재미있군요!!
+  </p>
+  <hr />
+
+  <!-- 순서가 있는 리스트와 순서가 없는 리스트 -->
+  <h3>아이스라떼 만드는 법</h3>
+  <!-- ol type 1(default), a, A, i, I -->
+  <ol type="i">
+    <li><b>우유</b>를 <strong>컵</strong>에 넣습니다.</li>
+    <li><i>얼음</i>을 넣습니다.</li>
+    <li><em>에스프레소 샷</em>을 넣습니다!</li>
+  </ol>
+
+  <h3>오늘의 할 일</h3>
+  <!-- ul type disc(default), circle, square -->
+  <ul type="square">
+    <li><u>html</u> 공부하기</li>
+    <li>운동하기</li>
+    <li><del>맛있는</del> 점심 먹기</li>
+  </ul>
+
+  <!-- 리스트 중첩해보기! -->
+  <ul>
+    <h3>내가 좋아하는 음식</h3>
+    <li>양식
+      <ul type="circle">
+        <li>스파게티</li>
+        <li>스테이크</li>
+      </ul>
+    </li>
+    <li>일식
+      <ul type="circle">
+        <li>돈까스</li>
+        <li>라멘</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>안녕하세요. .</p>
+  <pre>안녕하세요.         .</pre>
+  <details>
+    <summary>summary에는 제목을 쓰면 돼요</summary>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+  </details>
+
+
+  <hr>
+  <h2>img태그와 a 태그</h2>
+  <!-- img태그는 필수속성이있음: src, alt-->
+
+  <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA5MTZfNTMg%2FMDAxNzI2NDM0MjIxOTI1.htBd9_yX7i5MqsBDnVJo1kqjKbygjmozc9BmSyAqgGMg.4to7krdXetxH3BpD8aHDu1rGBYXtlvTvVDqHWR2OuMQg.PNG%2F%25B6%25F3%25B8%25E9%25B8%25D4%25B4%25C2%25B2%25DE2.png&type=a340" 
+  alt="라면 사진" width="200" height="200"/>
+  
+  <!--/는 의미가 매번 달라질 수 있음(절대경로)-->
+  <img src="/01_html/피카.jpg" alt="피카츄">
+  <img src="./피카.jpg" alt="피카츄">
+
+  <!--.은 자신이 있는 경로를 알려쥼(상대경로)-->
+<br />
+  <a href="http://www.naver.com" target="blank">네이버로 이동!</a>
+  <a href="./start.html"target="self">start html로 이동</a>
+
+  <a href="http://www.google.com">
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MTJfMjUy%2FMDAxNjE4MTk2NTk4OTk0.xr5MzZfIZvP9WYk3edIOtin5A11jsiKbcIkwUduQ7qYg.cvJhuLsD-Cr2Jht4kueS6ziv3RNnQO3P76QVzjY4R1gg.JPEG.haha100y%2F20210412%25A3%25DF120307.jpg&type=a340" alt="">
+  </a>
+  <br  />
+  <a href="http://www.google.com">
+    <img src="./피카.jpg" alt="피이카">
+  </a>
+</body>
+
+</html>
