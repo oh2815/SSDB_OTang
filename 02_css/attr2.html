@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 기본 속성</title>
+    <link rel="stylesheet" href="./attr2.css">
+</head>
+<body>
+    <h2>display 속성</h2>
+    <!-- div.d-block*4{block $} -->
+    <div class="d-block">block 1</div>
+    <div class="d-block">block 2</div>
+    <div class="d-block">block 3</div>
+    <div class="d-block">block 4</div>
+    <br><br>
+    <!-- span.d-inline*4{inline $} -->
+    <span class="d-inline">inline 1</span>
+    <span class="d-inline">inline 2</span>
+    <span class="d-inline">inline 3</span>
+    <span class="d-inline">inline 4</span>
+    <br><br>
+    <!-- span.d-inline-block*3{inline-block $} -->
+    <span class="d-inline-block">inline-block 1</span>
+    <span class="d-inline-block">inline-block 2</span>
+    <span class="d-inline-block">inline-block 3</span>
+
+    <h2>max-width, min-width</h2>
+    <div class="parent">
+        <div class="min"></div>
+        <div class="max"></div>
+    </div>
+
+    <h2>단위</h2>
+    <div class="box">px</div>
+    <div class="box">viewport(vh, vw)</div>
+    <div class="box">percent(%)</div>
+    <div class="rem">rem
+        <div class="rem">rem
+            <div class="rem">rem</div>
+        </div>
+    </div>
+    <div class="em">em
+        <div class="em">em
+            <div class="em">em</div>
+        </div>
+    </div>
+    <br><br><br><br><br>
+
+    <h2>border, border-radius</h2>
+    <div class="square border"></div>
+    <div class="square rounded"></div>
+
+    <h2>box-sizing</h2>
+    <div class="square box-sizing content-box">야</div>
+    <div class="square box-sizing border-box">왜</div>
+
+    <h2>모습 안보이게 하기</h2>
+    <div class="square">original</div>
+    <div class="square d-none">d-none</div>
+    <div class="square invisible">invisible</div>
+    <div class="square opacity-0">opacity-0</div>
+    <div class="square">original</div>
+
+    <h2>overflow</h2>
+    <!-- .square*4>p{lorem15}+img -->
+    <div class="square overflow-hidden">
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non assumenda id quam! Incidunt, veritatis a.</p>
+        <img src="./image/pooh.png" alt="pooh 사진">
+    </div>
+    <div class="square overflow-auto">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, ratione repudiandae! Veniam voluptas iure provident.</p>
+        <img src="./image/pooh.png" alt="pooh 사진">
+    </div>
+    <div class="square overflow-scroll">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi commodi quis ipsam saepe quia officiis?</p>
+        <img src="./image/pooh.png" alt="pooh 사진">
+    </div>
+    <div class="square overflow-visible">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut veniam, sequi voluptatum voluptate pariatur quisquam!</p>
+        <img src="./image/pooh.png" alt="pooh 사진">
+    </div>
+    <br><br><br><br><br>
+
+</body>
+</html>

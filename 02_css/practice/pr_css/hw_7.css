@@ -1,0 +1,11 @@
+[disabled] {
+    background-color: red
+}
+
+[placeholder="이름"] {
+    background-color: orange;
+}
+
+[value] {
+    background-color: blue;
+}

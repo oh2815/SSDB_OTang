@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&family=Poor+Story&display=swap');
+
+@font-face {
+    font-family: 'YeongamWolchulsanTTF';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/YeongamWolchulsanTTF.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GumiIndustryTTF';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/GumiIndustryTTF.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    /* font-family: 'GumiIndustryTTF'; */
+}
+
+.font-link{
+    font-family: "Hi Melody", sans-serif;
+}
+
+.font-import{
+    font-family: "Hi Melody", sans-serif;
+}
+
+.noonnu_font{
+    font-family: 'YeongamWolchulsanTTF', serif;
+}
+
+.container{
+    background-color: gold;
+    /* 글자색은 기본적으로 상속(cascading) */
+    color: gray;
+}
+
+.container > .sentences{
+    /* font-weight: 글씨 굵기 */
+    /* font-weight: bold;
+    font-weight: 400; */
+    font-weight: 700;
+
+    /* font-size: 글씨 크기(default 16px) */
+    font-size: 16px;
+    /* font-size: 1rem; */
+    /* font-size: 1em; */
+
+    /* text-align: 정렬 */
+    text-align: center;
+    text-align: right;
+    text-align: left;
+
+    /* text-decoration: 문자꾸미기 속성 */
+    /* text-decoration: line-through; */
+    /* text-decoration: underline; */
+    /* text-decoration: overline; */
+
+    /* line-height: 줄간 간격 */
+    line-height: 1;
+    line-height: 2;
+    line-height: 20px;
+}
+
+.test{
+    width: 100px;
+    height: 100px;
+    background-color: greenyellow;
+    text-align: center;
+    /* 글이 한 줄일 때는 세로기준 가운데 정렬로 사용한다. */
+    line-height: 100px;
+}
+
+.container a{
+    text-decoration: none;
+    color: gray;
+    /* 색상 지정 방법
+    1. 색상이름으로 설정! - red, skyblue, purple, ..
+    2. rgb(숫자,숫자,숫자)
+       - 0~255 중에 하나의 숫자가 들어감
+       - rgba(): a는 투명도 지정,
+    3. #NNNNNN: 
+        rgb(0,0,0): black : #000000
+        rgb(255,255,255): white: #ffffff
+        - 0~9와 a,b,c,d,e,f 로 이루어진 수
+
+    */
+}

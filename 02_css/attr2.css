@@ -1,0 +1,169 @@
+.d-block{
+    display: block;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    width: 100;
+    height: 100;
+    font-size: 13px
+    ;
+
+    /* 여백적용 */
+    padding: 10px;
+    margin: 10px;
+}
+
+.d-inline{
+    display: inline;
+    background-color: brown;
+    border: 1px solid blue;
+
+    /* 인라인은 가로, 세로 적용 안됨 */
+    width: 100px;
+    height: 100px;
+
+    /* 여백적용 */
+    /* padding은 위아래 배경색만 적용 */
+    padding: 10px;
+    margin: 10px;
+}
+
+.d-inline-block{
+    display: inline-block;
+    background-color: pink;
+    border: 1px solid green;
+
+    width: 100px;
+    height: 100px;
+
+    /* 여백적용 */
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.parent{
+    width: 500px;
+    height: 250px;
+    background-color: red;
+}
+
+.parent > .min{
+    width: 400px;
+    height: 100px;
+    background-color: orange;
+}
+
+.parent > .max{
+    width: 400px;
+    height: 100px;
+    background-color: violet;
+}
+
+/* 단위 확인 */
+.box{
+    background-color: bisque;
+    border: 1px solid black;
+}
+.box-px{
+    width: 50px;
+    height: 50px;
+}
+
+/* 뷰포트=브라우저에서 보이는 화면크기 */
+.box-view{
+    width: 50vw;
+    height: 50vw;
+}
+
+/* 부모가  body라서  */
+.box-per{
+    width: 50%;
+    height: 50%;
+}
+
+/* html의 폰트사이즈가 1rem */
+.rem{
+    font-size: 2rem
+}
+
+/* 부모의 폰트사이즈가 1em */
+.em{
+    font-size: 2em;
+}
+
+.square{
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.border{
+    /* width, style, color순으로 단축 속성 작성 */
+    /* 가장 많이 쓰이는게 단축 속성 */
+    border: 1px solid red;
+    border-color: black;
+    border-style: dotted;
+    border-width: 5px;
+
+    border-left: 2px dashed yellowgreen;
+    border-top-style: solid;
+}
+
+.rounded{
+    border-radius: 10%;
+    /* %보다는 px로 주는게 더 이쁨 */
+    border-radius: 5px 10px 20px 40px;
+    border-radius: 5px 20px 50px;
+    border-radius: 5px 50px;
+}
+
+.box-sizing{
+    border: 15px solid red;
+    padding: 20px;
+    background-color: yellow;
+}
+
+.content-box{
+    box-sizing: content-box;
+}
+/* 레이아웃짤 때에는 border-box가 더 용이함 */
+.border-box{
+    box-sizing: border-box;
+}
+
+.d-none {
+    /* display: none; */
+    background-color: red;
+    }
+    .invisible {
+    /* visibility: hidden; */
+    background-color: orangered;
+    }
+    .opacity-0 {
+    /* opacity: 0; */
+    background-color: tomato;
+    }
+    
+    .square > img[alt='pooh 사진']{
+        width: 200px;
+    }
+
+    .overflow-hidden{
+        overflow: hidden;
+    }
+
+    .overflow-auto{
+        overflow: auto;
+    }
+
+    .overflow-scroll{
+        overflow: scroll;
+    }
+
+    .overflow-visible{
+        overflow: visible;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }

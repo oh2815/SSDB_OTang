@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자2 - 복합선택자</title>
+    <style>
+        header{
+            background-color: gray;
+        }
+
+        section{
+            boder: 1px solid black;
+        }
+
+        article{
+            height: 100px;
+            border: 1px solid salmon;
+        }
+
+        /* 직계자식 선택자 */
+        header > h2{
+            color: yellow;
+        }
+
+        .first > h2{
+            color: white;
+            background-color: midnightblue;
+            text-align: center;
+        }
+
+        .second > h2{
+            color: midnightblue;
+            background-color: aliceblue;
+        }
+
+        main > .first > article > ul > li{
+            font-size: 10px;
+        }
+
+        /* 후손 선택자 - 기호는 띄어쓰기 */
+        .second li{
+            font-size: 20px;
+            background-color: brown;
+            color: #fff;
+        }
+
+        /* 인접 선택자(형제 선택자)(+ ~) */
+        #fairy + li{
+             background-color: cornflowerblue;
+        }
+
+        #fairy~li{
+            color: blue;
+        }
+
+        /* 일치선택자(붙여쓰기) */
+        div.sun{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>복합 선택자 해보기</h2>
+    </header>
+    <main>
+        <section class="first">
+            <h2>첫번째 section</h2>
+            <article>
+                <span>전래동화</span>
+            </article>
+            <article>
+                <ul>
+                    <li>토끼와 거북이</li>
+                    <li id="fairy">선녀와 나무꾼</li>
+                    <li class="sun">햇님달님</li>
+                    <li class="sun">콩쥐 팥쥐</li>
+                    <div class="sun">테스트 디브</div>
+                    <div>테스트 디브2</div>
+                    <li>은혜갚은 까치</li>
+                </ul>
+            </article>
+        </section>
+        <section class="second">
+            <h2>두번째 section</h2>
+            <ul>
+                <li>신데렐라</li>
+                <li>백설공주</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
