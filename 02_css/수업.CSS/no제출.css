@@ -1,0 +1,69 @@
+/* .container{
+    position: relative;
+    background-color: blueviolet;
+    width: 500px;
+    height: 500px;
+}
+
+.relative{
+    position: relative;
+    background-color: pink;
+    top: 50px;
+    left: 30px;
+    width: 100px;
+    height: 100px;
+}
+
+.fixed{
+    background-color: gold;
+    position: fixed;
+    right: 100px;
+    top: 100px;
+} */
+
+
+
+/* .container{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: skyblue;
+}
+
+.item1{
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    position: absolute;
+    z-index: 6;
+}
+.item2{
+    width: 100px;
+    height: 100px;
+    background-color: gold;
+    top: 30px;
+    left: 30px;
+    position: absolute;
+    z-index: 8;
+}
+.item3{
+    width: 100px;
+    height: 100px;  
+    background-color: violet;
+    top: 30px;
+    left: 60px;
+    position: absolute;
+    z-index: 10;
+} */
+
+
+.pet > .div{
+    background-color: skyblue;
+    width: 800px;
+    height: 500px;
+    background-image: url(./image/pooh.png);
+}
+
+div{
+    background-position: center y;
+}

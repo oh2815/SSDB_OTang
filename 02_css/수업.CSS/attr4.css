@@ -1,0 +1,45 @@
+.box{
+    display: inline-block;
+    width: 400px;
+    height: 800px;
+    border: 1px solid black;
+}
+
+.background{
+    background-color: aquamarine;
+    background: palegoldenrod;
+    background: linear-gradient(to right, black, white)
+}
+
+.background-image{
+    background-image: url(./image/small_img.png);
+
+    /* 1.background-repeat */
+    background-repeat: repeat;
+    background-repeat: repeat-y;
+    background-repeat: repeat-x;
+    background-repeat: no-repeat;
+
+    /* 2.background-position (top-left가 default)*/
+    background-position: center;
+    background-position: top right 55px;
+    background-position: 100px 55px;
+    background-position: top left;
+    /* 앞에가 x 뒤에가 y */
+
+    /* 3.background-size */
+    background-size: auto;
+    /* size를 하나만 쓰면 가로너비 설정되고, 세로는 비율에 맞춰서 자동설정됨 */
+    background-size: 50px;
+    background-size: 100px 200px; /* x축 y축 순서*/
+    background-size: contain;
+    background-size: cover;
+
+    /* 4.background-attachment */
+    background-attachment: scroll;
+    background-attachment: fixed;
+    
+    
+
+}
+

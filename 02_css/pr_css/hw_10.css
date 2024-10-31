@@ -1,0 +1,25 @@
+.back{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 50%;
+    background: linear-gradient(#FFE600, #FF0080, #DB20DB);
+  
+}
+
+
+.img{
+    background-image: url(/02_css/image/26139_img.png);
+    background-size: 105%;
+    background-position: center 0px 10px;
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    border: 5px solid white;
+    border-radius: 50%;
+    background-color: pink;
+}
+
