@@ -1,0 +1,65 @@
+.pic{
+    display: flex;
+    width: auto;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+}
+
+.beach1{
+    background-image: url(/02_css/image/beach1.jpg);
+    background-size: 195%;
+    background-position: center;
+    width: 250px;
+    height: 150px;
+    position: fixed;
+    left: 225px;
+    transform: skewY(25deg);
+    transition: 1s ease 0s;
+}
+
+.beach2{
+    background-image: url(/02_css/image/beach2.jpg);
+    background-size: 195%;
+    background-position: center;
+    width: 250px;
+    height: 150px;
+    transform: skewY(25deg);
+    transition: 1s ease 0s;
+   
+}
+.beach3{
+    background-image: url(/02_css/image/beach3.jpg);
+    background-size: 195%;
+    background-position: center;
+    width: 250px;
+    height: 150px;
+    position: fixed;
+    right: 225px;
+    transform: skewY(25deg);
+    transition: 1s ease 0s;
+}
+
+.beach1:hover{
+    transform: perspective(1000px) rotateY(0deg);
+    transition-timing-function: ease;
+    transition: 1s ease 0s;
+    z-index: 3;
+    
+}
+
+.beach2:hover{
+    transform: perspective(1000px) rotateY(0deg);
+    transition-timing-function: ease;
+    transition: 1s;
+    z-index: 3;
+   
+}
+
+.beach3:hover{
+    transform: perspective(1000px) rotateY(0deg);
+    transition-timing-function: ease;
+    transition: 1s;
+    z-index: 3;
+}

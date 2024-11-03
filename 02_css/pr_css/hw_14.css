@@ -1,0 +1,48 @@
+
+.box{
+    background-color: skyblue;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+   transition: 1s;
+   font-size: small;
+}
+.square1{
+    position: relative;
+}
+.square2{
+    position: absolute;
+    top: 110px;
+}
+.square3{
+    position: absolute;
+    top: 212px;
+}
+.square4{
+    position: absolute;
+    top: 312px;
+}
+
+.square1:hover{
+    transform: scaleX(2);
+    translate: 50%;
+}
+.square2:hover{
+    transform: skewX(-45deg);
+    translate: 50%;
+}
+.square3:hover{
+    transform: rotate(360deg) scale(0.8);
+    transition-timing-function: ease-in-out 0.5s;
+    translate: 300px;
+    border-radius: 50%;
+    background-color: red;
+    
+}
+.square4:hover{
+    transform: perspective(500px) rotateY(360deg) scale(2);
+    transition-timing-function: ease-in-out 0.5s;
+    background-color: yellow;
+}
+
+

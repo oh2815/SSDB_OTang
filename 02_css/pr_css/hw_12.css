@@ -1,0 +1,54 @@
+.header1{
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.header1 >.menus{
+   display: flex;
+} 
+
+.header1 >.menus >li{
+    margin: 0px 15px;
+}
+
+span{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.header2 >.menus{
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.header2 >.menus >li{
+   margin: 15px 20px 15px -20px;
+}
+
+.header3{
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header3 >ul{
+    display: flex;
+}
+
+.header3 >ul >li{
+    margin: 0px 15px;
+}
+
+ul{
+    list-style: none;
+}
+
+body{
+    font-size: 15px;
+   
+}
