@@ -4,11 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>요소 다루기</title>
-    <style></style>
+    <style>
+        img{
+            width: 150px;
+        }
+
+        .add-h1 {
+      color: yellowgreen;
+      text-align: center;
+      font-size: 30px;
+      background-color: black;
+    }
+
+    .p-2 {
+      background-color: yellow;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .p-3 {
+      background-color: skyblue;
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .friends {
+      background-color: pink;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+    </style>
     <script defer src="/03_javascript/DOM/index2-요소 다루기.js"></script>
 </head>
 <body>
     <h1>JS 요소 다루기</h1>
+
+    <!-- innerHTML, innerText, textContent -->
     <div id="div1">여기는<b>first</b>div태그 입니다.</div>
+
+    <!-- 속성 다루기 ----경로 찾을 때 부모 파일로 올라가려면 ../ -->
+      <a href="https://www.naver.com" id="naver">네이버로 이동</a>
+     <img src="../../02_css/image/pooh.png" alt="pooh" id="pooh">
+
+     <!-- style변경, class 변경 -->
+      <!-- ul#friends>li*4 -->
+      <ul id="friends">
+        <li>이요르</li>
+        <li id="tigger">티거</li>
+        <li>피글렛</li>
+        <li>로빈</li>
+     </ul>
+
+        <!-- 요소 생성, 추가, 삭제 -->
+         <div class="container">
+            <!-- p....... -->
+             <div>
+                <img src="../../02_css/" alt="ddd">
+                <span>이요르</span>
+             </div>
+         </div>
 </body>
 </html>

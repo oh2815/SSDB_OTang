@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 리스너</title>
+    <script defer src="/03_javascript/DOM/index3-이벤트.js"></script>
+    <style>
+        body{
+            height: 2000px;
+            position: relative;
+        }
+        .btn {
+          width: 80px;
+          height: 35px;
+          border-radius: 13px;
+          text-align: center;
+          line-height: 35px;
+          font-weight: 700;
+          margin: 10px;
+          cursor: pointer;
+        }
+    
+        .btn--black {
+          background-color: rgb(44, 44, 44);
+          color: white;
+        }
+    
+        .btn--green {
+          background-color: rgb(0, 182, 0);
+          color: yellow;
+        }
+    
+        .btn--blue {
+          background-color: rgb(73, 73, 255);
+          color: bisque;
+        }
+    
+        .btn--red {
+          background-color: orangered;
+          color: white;
+        }
+    
+        .btn--yellow {
+          background-color: gold;
+          color: gray;
+        }
+
+        .pos{
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        bottom: 500px;
+        opacity: 0.3;
+        transition: .4s;
+    }
+        </style>
+</head>
+<body>
+    <!-- .btn{버튼$}*4 -->
+    <div class="btn btn--black">버튼1</div>
+    <div class="btn btn--green">버튼2</div>
+    <div class="btn btn--blue">버튼3</div>
+    <div class="btn btn--red">버튼4</div>
+    <div class="btn btn--yellow" onclick="sayHi()">버튼5</div>
+    <div id="container"> </div>
+
+    <button>Click me!</button>
+    <input type="text" value="안녕하세요">
+    <div class="btn btn--red pos">hi!!!!</div>
+
+    <!-- form -->
+     <h3>오늘의 할 일</h3>
+     <form id="todo-form">
+        <input type="text" name="todo">
+        <button>Add</button>
+     </form>
+
+     <ul class="todos"></ul>
+
+     <h3>변경 이벤트</h3>
+     <input type="text" id="change-input">
+     <div class="intro"></div>
+</body>
+</html>
