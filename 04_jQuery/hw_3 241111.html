@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습 크기에 따라 자리 바꾸기</title>
+
+    <style>
+        body{
+            display: flex;
+            flex-direction: row;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 10px;
+        }
+    
+        @media screen and (max-width: 701px){
+            body{
+                display: flex;
+                flex-direction: column;
+            }
+            .box{
+                background-color: skyblue;
+            }
+        }
+            
+    </style>
+</head>
+<body>
+    <div class="box"></div> 
+    <br>
+    <div class="box"></div>
+    <br>
+    <div class="box"></div>
+</body>
+</html>

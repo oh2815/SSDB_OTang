@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Event</title>
+
+    <!-- jQ CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        .hover{
+            font-size: 20px;
+            background-color: aqua;
+            transition: all .4s;
+        }
+
+        .body{
+            height: 1000px;
+        }
+    </style>
+    <script defer src="./index3.js"></script>
+</head>
+<body>
+    <h1>jQuery Event</h1>
+
+    <p class="p-msg">안녕하세요</p>
+
+    <ul class="nums">
+        <li class="num">one</li>
+        <li class="num">two</li>
+        <li class="num">three</li>
+        <li class="num">four</li>
+    </ul>
+
+    <div class="div-hover">hover 변화 관찰</div>
+
+    <h2>키보드 이벤트</h2>
+    <input type="text" class="input-key">
+
+    <h3>오늘의 할 일</h3>
+    <form id="todo-form">
+       <input type="text" name="todo">
+       <button>Add</button>
+    </form>
+
+    <ul class="todos"></ul>
+</body>
+</html>

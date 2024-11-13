@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calender</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <style>
+        body > h1{
+            text-align: center; 
+            color: green;
+        }
+
+        td{
+            text-align: center;
+            height: 70px;
+        }
+
+        th{
+            width: 800px;
+            height: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    <form >
+         <input type="text" name="날짜" id="cal">
+         <br>
+         <input type="text" name="내용" id="content">
+         <br>
+         <input type="submit" value="작성" id="btn">
+    </form>
+
+    <h1>2024년 11월</h1>
+    <table class="calender">
+        <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="1">1</td>
+            <td class="2">2</td>
+        </tr>
+        <tr>
+            <td class="3">3</td>
+            <td class="4">4</td>
+            <td class="5">5</td>
+            <td class="6">6</td>
+            <td class="7">7</td>
+            <td class="8">8</td>
+            <td class="9">9</td>
+        </tr>
+        <tr>
+            <td class="10">10</td>
+            <td class="11">11</td>
+            <td class="12">12</td>
+            <td class="13">13</td>
+            <td class="14">14</td>
+            <td class="15">15</td>
+            <td class="16">16</td>
+        </tr>
+        <tr>
+            <td class="17">17</td>
+            <td class="18">18</td>
+            <td class="19">19</td>
+            <td class="20">20</td>
+            <td class="21">21</td>
+            <td class="22">22</td>
+            <td class="23">23</td>
+        </tr>
+        <tr>
+            <td class="24">24</td>
+            <td class="25">25</td>
+            <td class="26">26</td>
+            <td class="27">27</td>
+            <td class="28">28</td>
+            <td class="29">29</td>
+            <td class="30">30</td>
+        </tr>
+    
+    </table>
+    <script>
+        let num = document.querySelectorAll('td')
+        let dateval
+        for(let i=0; i<num.length; i++){
+            num[i].addEventListener('click',function(){
+               dateval = $(this).text()
+               $('#cal').val(dateval)
+            })
+        }
+         
+         //document.querySelector('#content')
+        
+        
+        document.querySelector('form').addEventListener('submit',function(e){
+            e.preventDefault()
+            let text = $('#content').val()
+            
+            for(let i=0; i<num.length; i++){
+                
+                if(i===Number(dateval)+4){
+                    
+                    $(num[i]).html(`<br>${dateval}<br>${text}`)
+                    
+                }
+            }
+        })
+        </script>
+</body>
+</html>
+/* 2.가져온 내용 해당된 날짜에 넣기 
+2-1 제출 눌렀을 때 적혀있는 내용을 해당 날짜의 td에 넣기
+적혀있는내용 - text 
+해당 날짜의 td - 
+dataval이 속해있는 td? / td[i]
+text 변경?
+$("td").text("dataval" "text")*/

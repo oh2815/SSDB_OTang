@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,ol{
+    list-style: none;
+}
+
+header{
+    background-color: skyblue;
+    width: 100%;
+    height: 100px;
+}
+
+header > .inner{
+    /* background-color: yellow; */
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100px;
+
+    position: relative;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+   
+}
+
+/* 메뉴, 로고, 메뉴바 정렬 */
+header > .inner > #logo{
+    font-size: 50px;
+    position: absolute;
+   
+}
+
+header > .inner > .menu{
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+header > .small-menu{
+    font-size: 30px;
+    font-weight: bold;
+    display: none;
+}
+
+header > #bgbar{
+    font-size: 50px;
+    position: fixed;
+    right: 5%;
+    top: 25px;
+}
+
+header > .smmenu2{
+    display: block;
+    text-align: center;
+}
+
+.hover{
+    background-color: black;
+    color: white;
+   
+}
+
+@media screen and (max-width: 768px){
+    header > .inner > .menu{
+        display: none;
+    }
+    header > .inner > #logo{
+        left: 50%;
+        transform: translateX(-50%);
+    }
+   
+}
+
+@media screen and (min-width: 768px){
+    header > #bgbar{
+        display: none;
+    }
+    header > .small-menu{
+        display: none;
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header 반응형 실습</title>
+    <link rel="stylesheet" href="./실습과제.css">
+    <script src="https://kit.fontawesome.com/23bae2616b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="inner">
+            <!-- <span class="logo">로고</span> -->
+            <ul class="menu">
+                <li>메뉴1</li>
+                <li>메뉴2</li>
+                <li>메뉴3</li>
+                <li>메뉴4</li>
+            </ul>
+            <!-- <span class="menu-bar">메뉴바</span> -->
+            <i class="fa-solid fa-tree" id="logo"></i>
+        </div>
+
+        <ul class="small-menu">
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+        </ul>
+        <i class="fa-solid fa-diamond" id="bgbar"></i>
+    </header>
+
+    <script>
+        document.querySelector('#bgbar').addEventListener('click',function(){
+            document.querySelector('.small-menu').classList.toggle('smmenu2')
+        })
+        $('.small-menu > li').hover(function(){
+            $(this).addClass('hover')
+        }, function(){
+            $(this).removeClass('hover')
+        }
+    )
+    </script>
+</body>
+</html>

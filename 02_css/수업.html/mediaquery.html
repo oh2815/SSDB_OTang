@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형</title>
+    
+    <style>
+        body{
+            background-color: coral;
+        }
+
+        .outer > .inner > h1{ 
+            /*관계를 여러 개 걸쳐서 쓰면 우선 순위가 높아짐*/
+            font-size: 32px;
+            color: red;
+        }
+
+        .pc{
+            display: block;
+        }
+
+        .mobile{
+            display: none;
+        }
+
+        /* 
+        기준점
+        - max-width: XXXpx
+          - XXXpx 이하일 때, 
+          - 가장 큰 사이즈 먼저 제작 후 > > mobile 사이즈 제작
+        - min-width: XXXpx
+          - XXXpx 이상일 때,
+          - 가장 작은 사이즈부터 먼저 제작 후 >> PC 사이즈 제작
+        */
+
+        @media screen and (max-width: 700px) {
+            .outer > .inner > h1{ 
+                font-size: 16px;
+                color: green;
+            }
+            body{
+                background-color: yellowgreen;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .mobile{
+                display: block;
+            }
+
+            .pc{
+                display: none;
+            }
+        }
+
+
+
+        @media (max-width:400px){
+            .outer > .inner > h1{
+                font-size: 10px;
+                color: yellow;
+            }
+            body{
+                /* background-color: black; */
+            }
+        }
+
+        @media screen and (min-width:300px){
+            .outer > .inner > h1{
+                color: pink;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+            <h1>Hello world</h1>
+        </div>
+    </div>
+
+    <!-- 500px 기준으로 
+     - mobile 환경에서는 mobile이라는 글자만 보이고
+     - PC 환경에서는 PC이라는 글자만 보이도록 만들기!! 
+    -->
+    <p class="mobile">mobile</p>
+    <p class="pc">pc</p>
+</body>
+</html>
