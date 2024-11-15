@@ -93,7 +93,7 @@ if(num%2===1){
     console.log('짝')
 }
 
-// 조건? 참일때 : 거짓일 때
+// 조건? 참일때 : 거짓일 때 ;
 num%2===1?console.log ('홀수'):console.log('짝수')
 
 let fruit = 'banana'
