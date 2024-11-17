@@ -7,7 +7,7 @@ for(변수 선언과 초기화;조건식(어디까지 감소, 증가할건지);�
 // 증감식: i++, i=i+1, i+=1
 
 for(let i=0;i<10;i++){
-    console.log('안녕',i)
+    console.log('안녕',i) // 1 ~ 10 까지 출력
 }
 
 for(let i=0;i<10;i=i+2){
@@ -144,3 +144,32 @@ while(confirm("계속 진행하시겠습니까?")){
     a2++
     alert(`${a2}번째 alert 창`)
 }
+
+
+// 구구단 while
+// let i = 2, j = 1;
+
+// while(i < 10){
+//     while(j < 10){
+//         console.log(i, "x", j, "=", i*j);
+//         break;
+//     }
+//     i++;
+// }
+
+
+
+let i = 2; // 구구단은 2단부터 시작
+
+while (i <= 9) {
+    let j = 1; // 각 단의 1부터 9까지 곱할 값
+    console.log(`${i}단`);
+    
+    while (j <= 9) {
+        console.log(`${i} * ${j} = ${i * j}`);
+        j++; // j값을 1씩 증가
+    }
+    i++; // i값을 1씩 증가
+}
+
+

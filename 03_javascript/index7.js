@@ -5,8 +5,8 @@ console.log(new Date("September 30, 1990 13:00:00"))
 
 // 1970.01.01 00:00:00 초 이후로 몇초나 지났는지!
 console.log(new Date(600000))
-console.log(new Date(0))
-console.log(new Date(2010,2,2,18,35,50))
+console.log(new Date(0)) 
+console.log(new Date(2024,10,6,18,35,50))
 
 console.log(now.getFullYear(),'년')
 console.log(now.getMonth(),'월') //(0~11까지만) 현재10월이면 09 
@@ -48,7 +48,7 @@ console.log('자연수 난수1:', Math.floor(Math.random()*10)+1) // ---ceil써�
 // 2. 0 <= x <3 ----*3 해줌
 // 3. 20 <= x <23 ----+20 해줌
 
-console.log('난수2:', Math.floor(Math.random()*3)+20)
+console.log('난수2:', Math.floor(Math.random()*3+20))
 
 const areaNum = {
 	Seoul: "02",
@@ -63,7 +63,7 @@ const areaNum = {
 // object의 key만 가져와서 배열로 반환
 let key = Object.keys(areaNum)
 
-// object의 key만 가져와서 배열로 반환
+// object의 values만 가져와서 배열로 반환
 let value = Object.values(areaNum)
 
 console.log(key)

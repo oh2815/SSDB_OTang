@@ -191,7 +191,7 @@ const areaNum = {
 };
 
 for(let area in areaNum){
-    console.log(area) // key > 문자열로 반환중이기 때문에 대괄호에 따옴표 붙여서 접근
+    console.log([area]) // key > 문자열로 반환중이기 때문에 대괄호에 따옴표 붙여서 접근
     // 값에 접근? 대괄호 접근법으로만 사용 가능
-    console.log(areaNum["area"])
+    console.log(areaNum[area])
 }
