@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>GET 요청</h2>
+    <form action="/getForm">
+      <!--/getForm 이라고 요청을 보냄. method로 get을 설정-->
+      <label>
+        id: <input type="text" name="id" />
+        <!--name속성 매우중요함. 반드시 있어야 됨-->
+      </label>
+      <label>
+        email: <input type="email" name="email" />
+        <!--name속성 매우중요함. 반드시 있어야 됨-->
+      </label>
+      <label>
+        pw: <input type="password" name="pw" />
+        <!--name속성 매우중요함. 반드시 있어야 됨-->
+      </label>
+
+      <button type="button">제출</button>
+      <!--제출 안됨-->
+      <button type="submit">제출</button>
+      <!--제출 됨, button은 기본적으로 submit이긴한데 명시적으로 적어줌-->
+    </form>
+
+    <h2>POST 요청</h2>
+    <form action="/postForm" method="post">
+      <!--/postForm 이라고 요청을 보냄. method로 post를 설정-->
+      <label for="id">ID</label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="ID를 작성 해주세요"
+        required
+        title="아이디는 대소문자, 숫자, 한글로 구성된 네글자 이상의 문자여야 합니다."
+        pattern="^([a-zA-Z0-9가-힣]){4, }$"
+      />
+      <!--for와 id를 맞춰 줘야만 하나가 됨.-->
+      <!--name은 다른 태그들과 겹쳐도 상관없지만, form 태그 안에서만 안겹치면 됨.-->
+      <!--required: 필수 속성인지 아닌지 알려주는 속성(required 있으면 필수 속성)-->
+      <label for="pw">PW</label>
+      <input
+        type="password"
+        id="pw"
+        name="pw"
+        placeholder="비밀번호 작성"
+        required
+        title="비밀번호는 영어소문자, 숫자로 구성된 8~12글자의 문자여야 합니다."
+        pattern="^([a-z0-9]){8,12}$"
+      />
+      <label> <input type="checkbox" name="agree" />마케팅동의 </label>
+      <label> <input type="checkbox" name="agree" />개인정보 수집 동의 </label>
+      <label> <input type="checkbox" name="agree" />이용약관 동의 </label>
+
+      <input type="submit" value="제출" />
+    </form>
+
+    <h2>유효성 검사</h2>
+    <form
+      action="/js-form-chrck"
+      method="post"
+      name="validationForm"
+      target="_blank"
+      onsubmit="return checkForm(this)"
+    >
+      <!--기본적으로는 뒤로가기를 할 수 있게 원래 내 창에서 열리는데 target:"_blank"로 지정해 줌으로 새 창에서 열리게 한다.-->
+      <!--JS로 form을 쉽게 사용하기위해 name값을 지정함-->
+      <!--변수값을 적을 때에는 '-'을 사용하면 안되지만 action으로 들어가는 주소를 적을 때에는 사용해도 괜찮다.-->
+      <!--onsubmit에는 폼이 제출 됐을 때 실행 될 함수를 적으면된다.
+      checkForm이라는 함수를 만들어주었고 매개변수로 this를 전달시켜준다. 
+      여기서 this는 Form그 자체-->
+      <input
+        type="text"
+        name="id2"
+        title="최소 한 글자"
+        minlength="1"
+        placeholder="최소 한 글자 작성"
+        id="input"
+      />
+      <span>우편물 수령 장소</span>
+      <label> <input type="checkbox" name="mail" value="자택" />자택 </label>
+      <label> <input type="checkbox" name="mail" value="회사" />회사 </label>
+    </form>
+
+    <script>
+      function checkForm(form) {
+        // this - 나 자신을 의미, form태그 그 자체를 의미하므로 form을 인자로 넣어줌
+        const form2 = document.forms["validationForm"]; // form을 불러오는 방법
+        console.log(form);
+        console.log(form.id2); // 선택된 폼.name
+        console.log(form.input); // 선택된 폼.id // form으로 지정해주고 있기 때문에 id 와 name 값으로도 form을 확인 할 수있다.
+
+        // input창이 빈 값일 때 제출이 안되게 하는 방법
+        if (form.id2.value.trim() === "") {
+          alert("아이디를 입력해주세요");
+          // 만약 form안에 id2라는 name을 가지고있는 input창의 value가 공백으로만 이루어져 있다면 alet 창을 띄워주세요
+
+          return false; // return false를 해야만 submit 이벤트를 막을 수 있음
+        }
+
+        // checkbox 하나라도 선택해야만 제출 되도록
+        // checkbox 상태가 둘 다 false라면 return false ---- checkbox에 선택이 안되어있으면 false
+        // checked라는 옵션을 주게되면 defalt값은 true, checked 옵션이 없으면 기본 default값이 false이므로 체크가 안되어있다.
+        // console.log(form.mail)로 확인 해봤을 때 checkbox는 배열 형태로 들어오게된다.
+
+        if (!form.mail[0].checked && !form.mail[1].checked) {
+          // form의 1번째 mail과 2번째 mail에 checked가 false일 때 제출이 되지 않는다.
+          // ===false랑 (not연산자)!를 쓰는것은 동일한 의미.
+          alert("우편물 수령 장소를 선택해 주세요");
+          return false; // 이벤트 막기
+        }
+      }
+    </script>
+  </body>
+</html>
