@@ -3,64 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>실습문제</title>
+    <title>실습문제1</title>
   </head>
   <body>
     <h1>실습문제1</h1>
-    <form action="/practiceResult" method="post">
-      <span>이름</span>
-      <label> <input type="text" name="name" /></label>
-      <br />
+    <form action="/practice1-get" method="get">
+      <label>
+        이름
+        <input type="text" name="name" />
+      </label>
+
       <fieldset>
         <legend>성별</legend>
-        <legend>
-          <label><input type="radio" name="sex" />남자</label>
-          <label><input type="radio" name="sex" />여자</label>
-        </legend>
+        <label>
+          <!--label당 1개당 input은 1개이다.-->
+          <input type="radio" name="gender" value="남자" />
+          <span>남자</span>
+        </label>
+        <label>
+          <input type="radio" name="gender" value="여자" />
+          <span>여자</span>
+        </label>
       </fieldset>
-      <br />
       <fieldset>
         <legend>생년월일</legend>
-        <legend>
-          <label>
-            <select name="date">
-              <option value="2024년">2024</option>
-              <option value="2023년">2023</option>
-              <option value="2022년">2022</option>
-              <option value="2021년">2021</option>
-              <option value="2020년">2020</option>
-            </select>
-            년
-            <select name="date">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            월
-            <select name="date">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            일
-          </label>
-        </legend>
+        <select name="year">
+          <% for(let i=1980; i <=2010;i++){ %>
+          <option value="<%=i%>"><%=i%></option>
+          <% } %>
+        </select>
+        <span>년</span>
+        <select name="month">
+          <% for(let i=1; i <=12;i++){ %>
+          <option value="<%=i%>"><%=i%></option>
+          <% } %>
+        </select>
+        <span>월</span>
+        <select name="date">
+          <% for(let i=1; i <=31;i++){ %>
+          <option value="<%=i%>"><%=i%></option>
+          <% } %>
+        </select>
+        <span>일</span>
       </fieldset>
-      <br />
+
       <fieldset>
         <legend>관심사</legend>
-        <legend>
-          <label><input type="checkbox" name="interest" />운동</label>
-          <label><input type="checkbox" name="interest" />여행</label>
-          <label><input type="checkbox" name="interest" />음식</label>
-        </legend>
+        <label>
+          <input type="checkbox" name="favorite" value="여행" />
+          <span>여행</span>
+        </label>
+        <label>
+          <input type="checkbox" name="favorite" value="패션" />
+          <span>패션</span>
+        </label>
+        <label>
+          <input type="checkbox" name="favorite" value="음식" />
+          <span>음식</span>
+        </label>
       </fieldset>
-      <br />
-      <button type="submit">가입</button>
+      <button>제출</button>
     </form>
   </body>
 </html>

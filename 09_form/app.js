@@ -64,8 +64,28 @@ app.get("/practice2", (req, res) => {
   res.render("practice/practice2");
 });
 // 3. 주소 지정 form GET요청
+app.get("/practice1-get", (req, res) => {
+  // console.log(req.query);
+  // name: 'asd',
+  // gender: '남자',
+  // year: '1980',
+  // month: '1',
+  // date: '1',
+  // favorite: '여행'
 
+  res.render("practice/practice_result", {
+    userInfo: req.query,
+    addInfo: false, // practice1에서는 적은 정보를 주고 있음
+  });
+});
 // 4. 주소 지정 form POST요청
+app.post("/practice2-post", (req, res) => {
+  // console.log(req.body);
+  res.render("practice/practice_result", {
+    userInfo: req.body,
+    addInfo: true,
+  });
+});
 
 // API 4개 작업해야함
 app.listen(PORT, function () {

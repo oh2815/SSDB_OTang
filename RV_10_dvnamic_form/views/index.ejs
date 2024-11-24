@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동적폼(ajax, axios, fetch)</title>
+
+    <!-- jQuery CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Axios CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>동적폼 전송 연습하기!</h1>
+    <form name="register">
+      <!--form을 더 쉽에 부르기 위해 name값을 줌-->
+      <label for="name">이름:</label>
+      <input type="text" name="name" id="name" required />
+
+      <br />
+      <span>성별</span>
+      <input type="radio" id="male" name="gender" value="남성" required />
+      <label for="male">남자</label>
+
+      <input type="radio" id="female" name="gender" value="여성" />
+      <label for="female">여자</label>
+      <!--radio는 required를 한쪽에만 적어도 같은 name을 가지는 radio에 모두 적용된다.-->
+
+      <br /><br />
+      <button type="button" onclick="ajaxGet()">Ajax GET 제출</button>
+      <button type="button" onclick="ajaxPost()">Ajax POST 제출</button>
+      <br />
+      <button type="button" onclick="axiosGet()">Axios GET 제출</button>
+      <button type="button" onclick="axiosPost()">Axios POST 제출</button>
+      <br />
+      <button type="button" onclick="fetchGet()">fetch GET 제출</button>
+      <button type="button" onclick="fetchPost()">fetch POST 제출</button>
+    </form>
+    <div class="result"></div>
+    <!--입력된 이름과 성별을 텍스트로 알려주기 위해서 만듬-->
+    <script>
+      const resultBox = document.querySelector(".result"); // divclass의 result를 선택해줌
+      function ajaxGet() {
+        const form = document.forms["register"]; // form 선택해줌 ( form )의 이름이 register
+
+        // console.log(form); ----- // form
+        // console.log(form.name); ----- // form안에 name이라는 name을 가진 input
+        // console.log(form.gender); ----- // radionodelist를 배열 형태로 불러옴
+        // console.log(form.gender.length); ----- // 2 (배열의 길이)
+        // console.log(form.gender.value); ----- // 남성 or 여성 or 남성,여성으로
+
+        //button type의 button에서는 required가 동작하지 않으므로 따로 유효성 검사를 해줘야 한다.
+        // if (form.name.value.trim() === "") {
+        //   // 만약 name의 value 값이 공백이라면 alert창을 띄워 주세요
+        //   alert("이름을 입력해 주세요");
+        //   return; // 밑에있는 것들은 읽지 않도록 return을 적어줌
+        // }
+
+        // if (form.gender.value === "") {
+        //   alert("성별을 선택해주세요.");
+        //   return;
+        // }
+
+        // 유효성 검증을 마쳤으니 아래에서 요청을 보내주면 됨.
+        // ----- ajax 요청 -----
+        // form 태그로 했을 때에는 알아서 name값 -> key, value -> 값을 객체 형태로 알아서 보내줬는데
+        // ajax에서는 그걸 객체형태로 만들어줘야 한다. ----- 보낼 데이터 객체형태로 만들기
+        const data = {
+          name: form.name.value, // 입력창에 입력되는 name값
+          gender: form.gender.value, // 선택되는 성별 데이터
+        };
+
+        /* ajax 사용 */ // {}로 객체형태로 적기
+        $.ajax({
+          type: "get", // 어떤 메소드로 보낼 건지
+          url: "/ajax", // form에 action에 해당하는 곳
+          data: data, // 서버로 넘겨줄 위에 만들어준 data
+
+          // 통신이 성공 했을 때
+          success: function (res) {
+            // 통신 이후에 일어날 일들을 적어주면 됨
+            console.log(res);
+            resultBox.textContent = `GET /ajax 요청 완료 ${res.name}의 성별은 ${res.gender}`;
+            // 결과값을 보려고 만들어준 div에 text를 넣어주는 것.
+            // res라는 공간에 객체 형태로 data가 들어와있기에 그것을 text에 담아서 내보낸다.
+          },
+
+          // 통신이 실패 했을 때
+          error: function (err) {
+            console.log("err", err);
+          },
+        }); // 다 적었으면 data를 /ajax라는 주소에 대해 get 요청을 해준다.
+      }
+      function ajaxPost() {
+        const form = document.forms["register"]; // 폼 불러오기
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        $.ajax({
+          type: "post",
+          url: "/ajax", // mathod가 다르다면 url은 겹쳐도 상관 없다.
+          data: data,
+
+          success: function (data) {
+            // 매개변수의 이름은 상관없이 들어오는 데이터를 확인하는게 중요하다.
+            console.log(data); // coneole.log로 data를 찍어주고있기에 콘솔 창에서도 데이터 확인이 가능
+            resultBox.textContent = `POST /ajax 요청 완료 ${data.name}의 성별은 ${data.gender}`;
+            resultBox.style.color = "orange";
+          },
+          error: function (error) {
+            // 오류가 날 상황을 대비 error라는 키에 함수를 적용시켜줌
+            console.log(error); // 어떤 에러가 났는지 확인
+          },
+        });
+      }
+
+      async function axiosGet() {
+        const form = document.forms["register"];
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        // 유효성 검사 -- checkvalidity()를 이용해서 무력했던 required를 사용해 준다.
+        //requierd가 있으면 기입이 됐는지 안됐는지 검사해줌.
+        /*
+             - required 속성이 없는 항목 > 무조건 true로 반환
+             - required 속성이 있는 항목 >
+                    - 기입을 했다면 true
+                    - 기입을 하지 않았다면 false
+            */
+        console.log(form.name.checkValidity()); // input [name="name"]
+        console.log(form.gender[0].checkValidity());
+        // 배열 형식으로 오기때문에 [0]이면 둘중 하나만 해도 true 반환시켜줌.
+
+        if (!form.name.checkValidity()) {
+          // not연산자 '!'를 붙여서 false라면 실행
+          resultBox.innerText = "이름을 입력해주세요";
+          //   resultBox.innerText = form.name.validationMessage; // "이 입력란을 작성해주세요"
+          return;
+        }
+
+        if (!form.gender[0].checkValidity()) {
+          resultBox.innerText = "성별을 선택해주세요";
+          //   resultBox.innerText = form.name.validationMessage; // "다음 옵션중 하나를 선택하세요"
+
+          return;
+        }
+        // console.log("여기까지 오나요");
+        // 앞에서 false가 나오면 return으로 반환되기에 여기까지 안오는데
+        // true가 나오면 return을 지나쳐서 console.log가 실행됨.
+
+        //      ----- axios 요청 보내기 -----
+        // promise기반이므로 then과 chatch, async, await사용 가능
+        // then은 성공 했을 때, chatch는 실패 했을 때
+        //  1.  then ~ catch 사용
+        /* axios({
+          method: "get",
+          url: "/axios",
+          params: data, // get요청일 때는 params에 담아서 요청
+        })
+          .then(function (response) {
+            // 통신에 성공 했을 때
+            console.log(response);
+            // {name:'allie', gender:'여성'} -- 그대로 뜨지 않음.
+            console.log("-----------");
+            console.log(response.data); // 서버에서 준 데이터
+            // 데이터는 항상 data라는 key에 담겨져서 온다.
+
+            // 담겨져오는 정보들을 확인 할 수 있다.
+            // console.log(response.status);
+            // console.log(response.statusText);
+            // console.log(response.headers);
+            // console.log(response.config);
+            resultBox.textContent = `GET /axios then ~ catch문으로 요청 완료! ${response.data.name}의 성별은 ${response.data.gender}`;
+            // 그냥 response가 아닌 response.~.~로 해야 그 데이터를 가져올 수 있음
+            resultBox.style.color = "blue";
+          })
+          .catch(function (err) {
+            // 통신에 실패 했을 때
+            console.log("error!!!!!!!!!!");
+            console.log(err); // 어떤 error인지 알려줌
+          }); */
+
+        //  2.  async ~ await
+        // await를 쓰려면 async가 붙은 함수 안에다가 써야한다. ( 위에 function에 async를 붙여줘야 함...119js)
+        /*       try {
+              // async ~ await에는 error를 잡아주는 구간이 없기 때문에 try ~ catch문을 써준다.
+              const response = await axios({
+                // 위에서 then에 들어오는 response와 여기서 사용된 response는 값이 같다. ( 서버에서 보내주는 데이터 )
+                // axios라는건 데이터를 불러오는 작업이기 때문에 시간이 좀 걸리는 작업이다. ---- awiat사용
+                method: "get",
+                url: `/axios?name=${data.name}&gender=${data.gender}`,
+                // '?' 뒤에는 query가 온다.
+                // 이렇게 쓰게되면 따로 data를 담아주지 않아도 된다.
+              });
+              console.log(response); // response가 뭔지
+              console.log(response.data); // 실제 data(name, gender)
+              const { name, gender } = response.data;
+              // response.data.name, response.data.gender이렇게 길게 쓰지 않기 위해 const로 지정을 해주었다.
+              resultBox.textContent = `GET /axios async ~ await문으로 요청 완료! ${name}의 성별은 ${gender}`;
+              // 위에 const에 담아준 정보들이 객체 형태이기 때문에 바로 접근이 가능하다.
+              resultBox.style.color = "green";
+            } catch (err) {
+              // error가 나면 catch로 빠진다.
+              console.err(err);
+            }
+          }
+          async function axiosPost() {
+            const form = document.forms["register"];
+            const data = {
+              name: form.name.value, // 문자열
+              gender: form.gender.value, // 문자열
+            };
+            try {
+              const res = await axios({
+                // axios 시간걸리는 작업 - await를 사용해서 기다리라고 명령.
+                method: "post",
+                url: "/axios",
+                data: data, // post에서는 body에 정보를 담기때문에 params가 아닌 data사용
+              });
+              console.log(res);
+              console.log(res.data);
+              // 실제 데이터
+              // data는 res안의 data에 담겨져 오기 때문에 res.data를 확인해준다.
+              const { name: 이름, gender: 성별 } = res.data; // 이렇게도 사용이 가능하다. name: 이름, gender: 성별
+              resultBox.textContent = `POST /axios async ~ await문으로 요청 완료! ${이름}의 성별은 ${성별}`;
+              resultBox.style.color = "hotpink";
+            } catch (err) {
+              console.error(err);
+            }*/
+      }
+
+      function fetchGet() {
+        const form = document.forms["register"]; // form 을 선택해 주고 보낼 데이터 담아주기
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+
+        // fetch("/fetch", { // url적어주기 : 첫번째 인자로 fetch, 뒤에는 메소드
+        //     method:"get"
+        // })
+        // fetch의 default method는 GET이므로 굳이 이렇게 안적어 줘도 된다.
+        fetch(`/fetch?name=${data.name}&gender=${data.gender}`)
+          .then(
+            // 간단하게 name, gender라는 공간들에 data를 넣어줌.
+            // 그리고 then과 catch사용
+            (response) => {
+              console.log(response);
+              // response가 뭔지 확인
+              // * 서버에서 넘어온 문자열을 뽑아내기 위해 text( ) 메소드를 사용.
+              //   return response.text(); // response객체에서 text 본문을 뽑아내기 위해 text() method 사용
+              return response.json(); // (req.query)로 객체형태를 data로 보냈기에 json사용
+              /*   이 작업은 시간이 조금 걸리는 작업이기 때문에 then을 두 개 사용 해줌.  */
+
+              // 이 response에서는 api 요청에서 보낸 메세지를 찾기 힘들기 때문에 return을 시켜줘야한다.
+              // 여기서 주의 해야 할 점은 서버에서 주는 data가 text값인지, 객체값인지는 확인해야한다.
+              // data 값이면 response.text(), 객체면 response.json으로 형태를 바꿔줘야 한다.
+              // 그러고 다음 then 에서 response.text를 받아서 써준다.
+            }
+          )
+          .then((res) => {
+            //res라는 인자에 response.text가 넘어오게 됨.
+            console.log(res);
+            resultBox.textContent = `Get /fetch then ~ catch문으로 요청 완료! ${res.name}의 성별은${res.gender}`;
+            resultBox.style.color = "limegreen";
+          })
+          .catch((err) => {
+            console.error("err", err);
+          });
+      }
+      async function fetchPost() {
+        const form = document.forms["register"];
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        };
+        try {
+          const res = await fetch("fetch", {
+            method: "post",
+            body: JSON.stringify(data), // object를 문자열 json형식으로 보내야함
+            // fetch는 처리해 줄 것들이 많다.
+            headers: {
+              // 어떤 형식을 보내주고 있는지를 담아주어야 한다.
+              "Content-Type": "application/json",
+              // Content-Type이라는 것을 application/json 형식으로 보내주고 있다는 것을 명시.
+              // header는 data에 대한 정보를 제공해주는 역할을 가지고 있다.
+            },
+          });
+          console.log(res); // response객체가 뜸 --- 여기에서는 보내준 body정보를 찾기쉽지 않음.
+          const result = await res.json();
+          // response.jason(), response.text()는 오래걸리는 작업으로 바로 쓰면 안되고, await를 두 번 사용해줘야 한다.
+          console.log(result); // ---- {name: 'ㄹㅁㅂ', gender: '여성'} 이런 data를 받음.
+          const { name, gender } = result;
+          resultBox.textContent = `POST /fetch async ~ await문으로 요청 완료! ${name}의 성별은${gender}`;
+          resultBox.style.color = "gray";
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    </script>
+  </body>
+</html>
