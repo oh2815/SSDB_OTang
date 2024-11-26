@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>multer 사용</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      form {
+        border: 2px solid #ccc;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>multer 사용해보기</h1>
+    <h2>파일 한 개 업로드</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <!-- file을 보낼 때에는 query로 file 정보가 넘어갈 수 없으므로
+            무조건 "post"로 보내야 함 -->
+      <input type="file" name="userfile" />
+      <!-- file 올리기 -->
+      <br />
+      <input type="text" name="title" placeholder="사진 제목" />
+      <!-- title 올리기 -->
+      <br />
+      <br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <h2>하나의 input에 파일 여러개 업로드</h2>
+    <form action="/uploads/array" method="post" enctype="multipart/form-data">
+      <!-- arry라는 method 사용 -->
+      <input type="file" name="multifiles" multiple />
+      <!-- multiple이라는 속성이 있어야지만 여러개 업로드가 가능하다. -->
+      <br />
+      <input type="text" name="title" placeholder="사진 제목" />
+      <br />
+      <button>업로드</button>
+    </form>
+
+    <h2>여러 개 input에 파일 업로드</h2>
+    <form action="/uploads/fields" method="post" enctype="multipart/form-data">
+      <input type="file" name="file1" /><br />
+      <input type="text" name="title1" placeholder="사진 제목1" />
+
+      <br /><br />
+      <input type="file" name="file2" /><br />
+      <input type="text" name="title2" placeholder="사진 제목2" />
+
+      <br /><br />
+      <input type="file" name="file3" /><br />
+      <input type="text" name="title3" placeholder="사진 제목3" />
+
+      <br /><br />
+      <button>업로드</button>
+    </form>
+
+    <hr />
+    <h2>동적 파일 업로드</h2>
+    <div class="dynamic">
+      <input type="file" name="dynamicFile" id="dynamicFile" />
+      <br />
+      <input
+        type="text"
+        name="dynamicTitle"
+        id="dynamicTitle"
+        placeholder="프로필 설명"
+      />
+      <button onclick="fileUpload()">프로필 업로드</button>
+      <button onclick="fileAndTextUpload()">프로필 업로드(with title)</button>
+    </div>
+    <img
+      src="/static/default.jpg"
+      alt="기본 프로필 이미지"
+      width="200"
+      height="200"
+    />
+    <div class="tit"></div>
+
+    <script>
+      function fileUpload() {
+        /* script안에 있는 함수의 이름과 ejs안에 있는 함수의 이름을 동일하게 해줘야 한다. */
+        const file = document.getElementById("dynamicFile");
+        /* 어떤 파일을 가지고 왔는지 확인을 하기위해 파일태그의 id값으로 가져온다. */
+        console.log(file);
+        console.dir(file);
+        /* 
+        console.dir(file) file안에 뭐가 있는지를 확인 했고,
+        그 file안에는 files가 있고 그 안에는 fileList라는 배열형태의 data가 있다.
+        [ name, sizs, type ]등..
+        이 정보를 통해 file.files로 접근이 가능하고,
+        files안에있는 0번에까지 "file.files[0]" 접근이 가능하다는 것을 알 수 있다. 
+        */
+        console.log(file.files);
+        console.log(file.files[0]); //  최종으로 보내야 하는 데이터
+
+        const formData = new FormData();
+        /* 정보를 보내기 위해서는 form형태의 무언가가 필요해서 만들어줌 */
+        // 자바스크립트에서 기본적으로 제공하는 클래스
+        // 파일을 페이지 전환없이 비동기로 제출하고 싶을 때 사용
+
+        formData.append("dynamicFile", file.files[0]);
+        /* 
+        key와 value라는 두 개의 인자를 설정. 
+        "dynamicFile"이라는 key", 실제 file의 정보인 file.files[0]
+        formData에 어떠한 정보를 객체 형태로 붙이기 위해서 append라는 method를 쓴다. 
+        */
+
+        axios({
+          // CDN붙여주기
+          method: "post",
+          url: "/dynamicUpload",
+          data: formData,
+          /* 
+            넘기는 data는 body 안에 보내는 것이긴 하지만, 
+            formData라는 것을 파일에 담아서 보내는 것이다.
+             */
+          headers: {
+            "Content-Type": "multipart/form-data",
+            /* 
+            header는 오브첵트(객체) 형태
+            form 태그 같은 경우에는 인코딩 타입(enctype)을 속성에 붙여서 써줄 수 있지만 
+            axios는 header에다가 설정을 해준다.
+            ( multer는 "multipart/form-data" type만 받아 줄 수있기 때문에 반드시 설정을 해주어야 한다.)
+            */
+          },
+        }).then((res) => {
+          console.log(res.data);
+          /* 
+           res.data의 내용
+           {
+            fieldname: 'dynamicFile',
+            originalname: 'animal-7024072_1280.png',
+            encoding: '7bit',
+            mimetype: 'image/png',
+            destination: 'uploads/',
+            filename: 'animal-7024072_12801732520696723.png',
+            path: 'uploads\\animal-7024072_12801732520696723.png',
+            size: 1730712
+        }
+          */
+          console.log(res.data.path); // --- 폴더까지 포함한 전체 경로
+          //console.log(res.data.originalname); --- 원래 이름
+
+          // img를 선택을 해주고 src를 바꿔 주면 됨.
+          const img = document.querySelector("img");
+          img.src = `/${res.data.path}`;
+          /* 
+           형태가 '/uploads/~~~~.png' 가 되면 좋기때문에
+           `` 에 / 를 붙여서 작성해 준다.
+           */
+        });
+      }
+      function fileAndTextUpload() {}
+    </script>
+  </body>
+</html>

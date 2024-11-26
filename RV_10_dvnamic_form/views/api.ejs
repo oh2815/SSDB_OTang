@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>외부 API 사용</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>간단 Open API 사용하기</h1>
+
+    <h3>고양이 사진 바꾸기</h3>
+    <img src="" alt="기본 이미지" id="img" />
+    <button onclick="changeCatImg();">고양이 사진 변경</button>
+
+    <h3>영화 정보 가져오기</h3>
+    <ul>
+      <!-- <div>
+            <img src="영화 이미지" alt="">
+            <p>영화제목</p>
+        </div> -->
+    </ul>
+    <script>
+      // https://api.thecatapi.com/v1/images/search
+      function changeCatImg() {
+        fetch("https://api.thecatapi.com/v1/images/search")
+          /* 처음에는 url을 적어주고 두번째에는 메소드같은 객체를 적어줄 수 있다.
+            fetch는 get요청이 default값이므로 안적어도 됨. */
+          .then(function (res) {
+            /* 들어온 get요청을 then으로 확인. */
+            console.log(res);
+            /* 원하는 data가 아니므로 res.json으로 반환시켜주어 확인. */
+            return res.json();
+            /* 다음 then에서 사용 하기위한 return 
+              배열 형태의 object로 주기때문에 res.json*/
+          })
+          .then(function (data) {
+            console.log(data); // [{id, url, width, height}], 배열형태
+            /* 실제로 원하는 데이터인 res.json의 값이다. */
+            const img = document.getElementById("img");
+            // img태그 불러오기
+            img.src = data[0].url;
+            // url에 있는 장소는 data의 0번쨰 안에 있다.
+            img.alt = `${data[0].id}-cat-img`;
+            // img의 id값을 이용
+            img.width = 400;
+          });
+      }
+
+      //   apikey: 2e2df2bd
+      //   http://www.omdbapi.com/?apikey=[yourkey]&
+      const word = "iron";
+      axios({
+        method: "get",
+        url: "http://www.omdbapi.com/?apikey=2e2df2bd&s=" + word,
+        // 원하는 검색어를 따로 word라고 빼주고 위에 변수로 저장
+      }).then((res) => {
+        console.log(res.data);
+        // {Search, totalResults, Response} --- 객체형태
+        console.log(res.data.Search);
+        // res.data 가 객체 형태이기 때문에 그 안에있는 search 까지 접근이 가능.
+        // res.data.Search는 배열형태. {Poster, Title, Type, Year, imdbID}[]
+
+        const container = document.querySelector("ul");
+        // ul 은 container에다가 담아둠.
+
+        // ul 태그 아래에 10개의 div를 만들어줌. -- for문
+        for (let movie of res.data.Search) {
+          /* res.data.Search가 배열 형태이므로 바로 써도 상관 없음
+           배열 형태가 아닌경우 다른 변수에 담아서 사용. */
+          //   console.log(movie.Title); // 영화 제목
+          //   console.log(movie.Poster); // 이미지 정보
+          //   console.log(movie.imdbID); // 고유 ID
+          const div = document.createElement("div");
+          const img = document.createElement("img");
+          const p = document.createElement("p");
+          // ul > div > img+p  -- ul 안에 div, div 안에 img와 p(영화의 제목) 태그를 만들어줌.
+
+          img.src = movie.Poster;
+          // img태그에 src 추가
+          img.alt = movie.imdbID + " movie image";
+          // img태그에 alt 추가
+
+          p.innerText = movie.Title;
+          // p태그에는 영화제목을 입력해주는 text추가.
+          div.append(img, p);
+          // div 에 img와 p 태그 추가함
+          container.append(div);
+          // container(ul)에 div를 추가함
+        }
+      });
+    </script>
+  </body>
+</html>

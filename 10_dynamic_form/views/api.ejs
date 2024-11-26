@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>외부 API 사용</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>간단 Open API 사용하기</h1>
+
+    <h3>고양이 사진 바꾸기</h3>
+    <img src="" alt="기본 이미지" id="img" />
+    <button onclick="changeCatImg();">고양이 사진 변경</button>
+
+    <h3>영화 정보 가져오기</h3>
+    <ul>
+      <!-- <div>
+            <img src="영화 이미지" alt="">
+            <p>영화제목</p>
+        </div> -->
+    </ul>
+    <script>
+      // https://api.thecatapi.com/v1/images/search
+      function changeCatImg() {
+        fetch("https://api.thecatapi.com/v1/images/search")
+          .then(function (res) {
+            console.log(res);
+            return res.json();
+          })
+          .then(function (data) {
+            console.log(data); // [{id, url, width, height}]
+            const img = document.getElementById("img");
+            img.src = data[0].url;
+            img.alt = `${data[0].id}-cat-img`;
+            img.width = 400;
+          });
+      }
+
+      //   apikey: 2e2df2bd
+      //   http://www.omdbapi.com/?apikey=[yourkey]&
+      const word = "iron";
+      axios({
+        method: "get",
+        url: "http://www.omdbapi.com/?apikey=2e2df2bd&s=" + word,
+      }).then((res) => {
+        console.log(res.data); // {Search, totalResults, Response}
+        // 배열 {Poster, Title, Type, Year, imdbID}[]
+        console.log(res.data.Search);
+
+        const container = document.querySelector("ul");
+        for (let movie of res.data.Search) {
+          //   console.log(movie.Title); // 영화 제목
+          //   console.log(movie.Poster); // 이미지 정보
+          //   console.log(movie.imdbID); // 고유 ID
+          //   ul > div>img+p
+          const div = document.createElement("div");
+          const img = document.createElement("img");
+          const p = document.createElement("p");
+
+          img.src = movie.Poster;
+          img.alt = movie.imdbID + " movie image";
+
+          p.innerText = movie.Title;
+          div.append(img, p);
+          container.append(div);
+        }
+      });
+    </script>
+  </body>
+</html>

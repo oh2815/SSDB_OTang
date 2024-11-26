@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>multer 사용</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      form {
+        border: 2px solid #ccc;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>multer 사용해보기</h1>
+    <h2>파일 한 개 업로드</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfile" />
+      <br />
+      <input type="text" name="title" placeholder="사진 제목" />
+      <br />
+      <br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <h2>하나의 input에 파일 여러개 업로드</h2>
+    <form action="/uploads/array" method="post" enctype="multipart/form-data">
+      <input type="file" name="multifiles" multiple />
+      <br />
+      <input type="text" name="title" placeholder="사진 제목" />
+      <br />
+      <button>업로드</button>
+    </form>
+
+    <h2>여러 개 input에 파일 업로드</h2>
+    <form action="/uploads/fields" method="post" enctype="multipart/form-data">
+      <input type="file" name="file1" /><br />
+      <input type="text" name="title1" placeholder="사진 제목1" />
+
+      <br /><br />
+      <input type="file" name="file2" /><br />
+      <input type="text" name="title2" placeholder="사진 제목2" />
+
+      <br /><br />
+      <input type="file" name="file3" /><br />
+      <input type="text" name="title3" placeholder="사진 제목3" />
+
+      <br /><br />
+      <button>업로드</button>
+    </form>
+
+    <hr />
+    <h2>동적 파일 업로드</h2>
+    <div class="dynamic">
+      <input type="file" name="dynamicFile" id="dynamicFile" />
+      <br />
+      <input
+        type="text"
+        name="dynamicTitle"
+        id="dynamicTitle"
+        placeholder="프로필 설명"
+      />
+      <button onclick="fileUpload()">프로필 업로드</button>
+      <button onclick="fileAndTextUpload()">프로필 업로드(with title)</button>
+    </div>
+    <img
+      src="/static/default.jpg"
+      alt="기본 프로필 이미지"
+      width="200"
+      height="200"
+    />
+    <div class="tit"></div>
+
+    <script>
+      function fileUpload() {
+        const file = document.getElementById("dynamicFile");
+        console.log(file);
+        // console.dir(file);
+        console.log(file.files);
+        console.log(file.files[0]);
+
+        const formData = new FormData();
+        // 자바스크립트에서 기본적으로 제공하는 클래스
+        // 파일을 페이지 전환없이 비동기로 제출하고 싶을 때 사용
+        formData.append("dynamicFile", file.files[0]);
+
+        axios({
+          method: "post",
+          url: "/dynamicUpload",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }).then((res) => {
+          console.log(res.data);
+          /* 
+           {
+            fieldname: 'dynamicFile',
+            originalname: 'animal-7024072_1280.png',
+            encoding: '7bit',
+            mimetype: 'image/png',
+            destination: 'uploads/',
+            filename: 'animal-7024072_12801732520696723.png',
+            path: 'uploads\\animal-7024072_12801732520696723.png',
+            size: 1730712
+        }
+          */
+          console.log(res.data.path);
+          //   console.log(res.data.originalname);
+          const img = document.querySelector("img");
+          img.src = `/${res.data.path}`;
+        });
+      }
+      function fileAndTextUpload() {}
+    </script>
+  </body>
+</html>

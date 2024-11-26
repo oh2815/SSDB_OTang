@@ -61,6 +61,13 @@ app.post("/fetch", (req, res) => {
   console.log(req.body);
   res.send(req.body); // data가 object가 json 형태로 있기 때문에 text가 아닌 (req.body)를 써도 된다.
 });
+
+// 외부 api 사용하기
+app.get("/api", (req, res) => {
+  res.render("api");
+  //  api 라는 사이트로 전송을 시켜줄 것이기에 reder을 사용한다.
+});
+
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
