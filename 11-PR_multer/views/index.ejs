@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일 업로드 실습</title>
+    <style>
+      form label {
+        display: flex;
+      }
+
+      form label span {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>파일 업로드 실습</h1>
+    <form action="/register" method="post" enctype="multipart/form-data">
+      <label>
+        <span>아이디</span>
+        <input type="text" name="userid" placeholder="아이디 입력" />
+      </label>
+      <label>
+        <span>비밀번호</span>
+        <input type="password" name="userpw" placeholder="비밀번호 입력" />
+      </label>
+      <label>
+        <span>이름</span>
+        <input type="name" name="username" placeholder="이름 입력" />
+      </label>
+      <label>
+        <span>나이</span>
+        <input type="text" name="userold" placeholder="나이 입력" />
+      </label>
+      <label>
+        <span>프로필 사진</span>
+        <input type="file" name="userfile" />
+      </label>
+
+      <button type="reset">리셋</button>
+      <button type="submit">회원가입</button>
+    </form>
+  </body>
+</html>

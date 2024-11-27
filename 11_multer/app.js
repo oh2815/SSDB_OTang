@@ -116,7 +116,7 @@ app.post(
 // 동적폼 파일업로드
 app.post("/dynamicUpload", uploadDetail.single("dynamicFile"), (req, res) => {
   console.log(req.file);
-  console.log("tttt");
+  console.log(req.body);
   /* 
   {
   fieldname: 'dynamicFile',
@@ -129,7 +129,12 @@ app.post("/dynamicUpload", uploadDetail.single("dynamicFile"), (req, res) => {
   size: 1730712
 }
   */
-  res.send(req.file);
+  // res.send(req.file);
+
+  // 하나의 객체에 합쳐서 보내는 방법
+  // res.send({ ...req.body, ...req.file });
+  //  이렇게 합쳐서 보내면 헷갈릴 수도 있음 그래서 다른방식으로 보내줄거임
+  res.send({ file: req.file, fileInfo: req.body });
 });
 
 app.listen(PORT, () => {

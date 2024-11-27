@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>결과 화면</title>
+    <link rel="stylesheet" href="/static/mypage.css" />
+  </head>
+  <body>
+    <!-- 
+        userid: 'dhxodnjs',
+        userpw: 'asd',
+        username: '오태원',
+        userold: 'old'
+    -->
+    <div class="card">
+      <h1><%=username%>님 마이페이지</h1>
+      <img src="/<%=src%>" alt="프로필 이미지" width="200" />
+      <p>아이디: <span><%=userid%></span></p>
+      <p>비밀번호: <span><%=userpw%></span></p>
+      <p>이름: <span><%=username%></span></p>
+      <p>나이: <span><%=userold%></span></p>
+    </div>
+  </body>
+</html>

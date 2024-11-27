@@ -10,6 +10,11 @@
         border: 2px solid #ccc;
         padding: 1rem;
       }
+
+      .profile {
+        background-color: pink;
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body>
@@ -94,7 +99,7 @@
           },
         }).then((res) => {
           console.log(res.data);
-          /* 
+          /*
            {
             fieldname: 'dynamicFile',
             originalname: 'animal-7024072_1280.png',
@@ -112,7 +117,51 @@
           img.src = `/${res.data.path}`;
         });
       }
-      function fileAndTextUpload() {}
+
+      // 2. 륵과 파일을 함께 업로드
+      function fileAndTextUpload() {
+        const formData = new FormData();
+        const file = document.getElementById("dynamicFile");
+        // input [type = "file"], 파일 정보를 서버로 보내기 위해 선택
+        const title = document.getElementById("dynamicTitle");
+        // 이미지에 대한 제목, 즉 , 글자 정보를 서버로 보내기 위해 선택
+        const img = document.querySelector("img");
+        // img 태그 / 사진의 src alt 속성을 바꾸기 위해서 선택
+
+        console.log(file.files); // 배열형태
+
+        formData.append("dynamicFile", file.files[0]);
+        formData.append("dynamicTitle", title.value);
+
+        /*
+        formData = {  ---- 객체
+          dynamicFile: 파일 정보(fileList[0])
+          dynamicTitle: 사진, 제목( string타입 )
+        }
+        */
+
+        axios({
+          method: "post",
+          url: "/dynamicUpload",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+          .then((res) => {
+            console.log(res.data); // 서버에서 보내주는 data
+            console.log(res.data.fileInfo.dynamicTitle);
+            console.log(res.data.file.path); //
+
+            img.src = "/" + res.data.file.path;
+            img.alt = res.data.fileInfo.dynamicTitle + "사진";
+            // class = "tit"
+            img.classList.add("pofile");
+            document.querySelector(".tit").innerText =
+              res.data.fileInfo.dynamicTitle;
+          })
+          .catch((err) => console.error("error!", err));
+      }
     </script>
   </body>
 </html>
