@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 정보</title>
+  </head>
+  <!-- 
+  { realId: 'cocoa', 
+   realPw: 'qwer1234*', 
+   name: ' 홍길동', 
+   age: 20 }
+  -->
+  <body>
+    <h1>여기는 User 페이지</h1>
+    <a href="/">홈으로 이동하기</a>
+    <br /><br />
+    <input type="text" readonly value="<%=realID%>" /><br />
+    <input type="text" readonly value="<%=realPw%>" /><br />
+    <input type="text" readonly value="<%=name%>" /><br />
+    <input type="number" readonly value="<%=age%>" /><br />
+  </body>
+</html>

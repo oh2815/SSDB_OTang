@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>댓글 목록 보기</title>
+  </head>
+  <body>
+    <h1>댓글 모음</h1>
+    <a href="/">홈으로 이동</a>
+    <ul>
+      <% for(let i=0; i<commentInfos.length; i++) { %>
+      <li>
+        <b><%=commentInfos[i].userid%></b>
+        <a href="/comment/<%=commentInfos[i].id%>"><%=commentInfos[i].comment%></a>
+      </li>
+      <% } %> 
+      <!-- 이것 까지 작성한 뒤 위에 /comment로 넘어가는 요청을 해주러 간다. -->
+    </ul>
+  </body>
+</html>
+
+<!--  <ul>
+    for(let i=0; i<commentInfos.lenth;i++){   배열로 들어오므로 .length 
+
+  <b>commentInfos[i].userid</b> -->
+<!-- <a href="/comment/commentInfos[i].id"> commentInfos[i].comment </a> -->
+<!-- /comment의 i번째의 id로 가겠다.-->
