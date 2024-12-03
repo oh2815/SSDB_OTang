@@ -1,5 +1,5 @@
 {
-  "name": "pr_13_mvc",
+  "name": "99_express_blog",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -8,10 +8,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^4.21.1"
-  },
-  "devDependencies": {},
-  "description": ""
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1"
+  }
 }

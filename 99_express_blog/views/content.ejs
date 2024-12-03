@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <%-include('./include/head')%>
+  </head>
+  <body>
+    <%-include('./include/header')%>
+    <!-- 
+      {
+        contentID: 100,
+         title: '백엔드가 많이 어렵니요?',
+        content: '토요일 수업..',
+        img: null ("/static/~~~")
+    }
+    -->
+    <div>
+      <h2><%=title%></h2>
+      <p><%=content%></p>
+      <% if(img){ %>
+      <img src="<%=img%>" alt="<%=contentID %> 번 이미지" width="300" />
+      <% } %>
+    </div>
+  </body>
+</html>
