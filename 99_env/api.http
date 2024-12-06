@@ -1,0 +1,10 @@
+@sever = http://localhost:8080
+
+GET {{sever}}/
+
+POST {{sever}}/test
+Content-Type: application/json; charset=UTF-8
+
+{
+    'name': "태원"
+}
