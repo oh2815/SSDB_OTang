@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cookie</title>
+  </head>
+  <body>
+    <h1>쿠키 확인하기</h1>
+    <a href="/setCookie">쿠키 설정</a>
+    <a href="/getCookie">쿠키 값 가져오기</a>
+    <a href="/clearCookie">쿠키 삭제</a>
+
+    <script>
+      console.log("document.cookie", document.cookie);
+      document.cookie = "user=sesac; expires=09 Dec 2024 /15:00:00 GMT";
+    </script>
+  </body>
+</html>
