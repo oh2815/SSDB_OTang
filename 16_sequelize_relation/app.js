@@ -14,13 +14,13 @@ const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 
 sequelize
-  .sync()
+  .sync({ force: false })
   .then(() => {
-    console.log("연결");
+    console.log("db 연결 성공");
     app.listen(PORT, () => {
       console.log(`http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.log("err", err);
+    console.log("db connerction err", err);
   });
