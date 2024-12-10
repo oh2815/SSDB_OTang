@@ -1,7 +1,7 @@
 {
   "name": "pr_17-2_session",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
