@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>로그인</h1>
+    <form name="login-form">
+      <input type="text" id="id" placeholder="ID를 입력하세요" />
+      <input type="password" id="pw" placeholder="비밀번호를 입력하세요" />
+
+      <button type="button" onclick="login()">로그인</button>
+    </form>
+    <script>
+      /* 
+      - 로컬 스토리지
+        - 브라우저 내에 영구적으로 {키:값} 쌍으로 데이터 저장
+        - 클라이언트의 저장소, 문자열 데이터만 저장 가능
+        - 5KB 까지의 문자열만 저장 가능 (쿠키는 4KB)
+
+        localStorage.setItem("키1","value1") // 설정
+        localStorage.setItem("키2","value2") // 설정
+        localStorage.getItem("키1") // 키1에 대한 value 가져오기, value1
+        localStorage.removeItem("키1") // 키1에 대한 value 삭제
+        localStorage.clear() // 로컬 스토리지 전체 삭제
+      */
+      // POST /login
+      async function login() {
+        const form = document.forms["login-form"];
+        const loginResponse = await axios({
+          method: "post",
+          url: "/login",
+          data: {
+            id: form.id.value,
+            pw: form.pw.value,
+          },
+        });
+
+        console.log(loginResponse.data);
+
+        const { message, token, result } = loginResponse.data;
+        if (result) {
+          // 토큰 정보를 로컬 스토리지에 저장
+          localStorage.setItem("login", token);
+          // 로그인 성공 후 HOME으로 이동
+          document.location.href = "/";
+        } else {
+          alert(message);
+          form.reset();
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -21,15 +21,15 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Menu2</a>
           </li>
-          <%#if (로그인 되었다면) { %>
+          <%if (isLogin) { %>
             <li class="nav-item">
               <a class="nav-link active" href="/logout">Logout</a>
             </li>
-          <%# } else { %>
+          <% } else { %>
             <li class="nav-item">
               <a class="nav-link active" href="/login">Login</a>
             </li>
-          <%# } %>
+          <% } %>
         </ul>
         </form>
       </div>

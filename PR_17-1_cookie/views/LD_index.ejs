@@ -81,47 +81,40 @@
       // https://getbootstrap.com/docs/5.2/components/modal/#passing-options
 
       const myModal = new bootstrap.Modal("#exampleModal");
-      console.log(myModal);
-      //   myModal.show();
-      if ("<%= popup %>" === "") {
-        myModal.show();
-      }
-      /*
-          1. 쿠키 없으면 myModal.show() 시키기, 쿠키 있으면 xxx
-          2. 오늘하루 보지 않기 체크 후 닫기 버튼 누르면 24시간 짜리 쿠키 생성
-          */
+      //   console.log(myModal);
+
+      /*  
+      1. 쿠키 없으면 myModal.show() 시키기, 쿠키 있으면 xxx
+      2. 오늘하루 보지 않기 체크 후 닫기 버튼 누르면 24시간 짜리 쿠키 생성 
+      */
 
       // 서버에서 render 할 때 두번째 인자로 보내는 popup 키에 대한 데이터
       // popup이라는 곳에 쿠키 데이터 담아서 보낸 후 확인해보기
       console.log("popup >> ", "<%= popup %>");
+      console.log(typeof "<%= popup %>"); // 항상 string
+      if ("<%= popup %>" === "") {
+        // popup이 빈 문자열이면 쿠키가 없는 상태
+        myModal.show(); // 팝업창 보임
+      }
 
       // TODO: popup 쿠키 값이 ''이라면, 모달 보여주기 (쿠키가 설정되지 않았다면)
 
       // TODO: 모달 닫기 버튼 클릭 함수 완성
       async function closeModal() {
-        // 1. 체크 박스가 "체크되어 있다면" (오늘 하루 보지 않음을 선택했다면)
-        // POST /setCookie 요청 보내기 (back에서 popup 쿠키 설정하기)
-        // 2. js로 모달 닫기 수행 (위 참고 링크 확인)
-        const check = document.getElementById("cookie");
-        // cookie라는 id를 가진 checkbox를 가지고와서 check에 넣어둠
-        // checked 속성을 이용해서 체크가 됐는지 안됐는지를 확인 해줌.
+        // 1. 체크 박스가 "체크되어 있다면"
+        const checkbox = document.getElementById("cookie");
+        // (오늘 하루 보지 않음을 선택했다면)
+        if (checkbox.checked) {
+          // POST /setCookie 요청 보내기 (back에서 popup 쿠키 설정하기)
+          const cookieResult = await axios({
+            method: "POST",
+            url: "/setCookie",
+          });
 
-        // axios사용시 하나하나 차근히 써내려가기
-        // if - axios - async~await - try~catch
-        // try catch 안써도 되고 if는 밖에 빼 둬도됨.
-        console.log(check);
-        try {
-          if (check.checked) {
-            const result = await axios({
-              method: "post",
-              url: "/set-cookie",
-            });
-          } else {
-            myModal.hide();
-          }
-        } catch (err) {
-          console.error("err", err);
+          console.log(cookieResult);
         }
+        // 2. js로 모달 닫기 수행 (위 참고 링크 확인)
+        myModal.hide();
       }
     </script>
   </body>
