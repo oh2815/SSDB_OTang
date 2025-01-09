@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 export default function ChangeObj({ objArr }) {
+  console.log("확인", objArr);
   const [Member, setChangeMember] = useState(0);
 
   const changeMember = () => {
-    setChangeMember(Member === objArr.lengrth - 1 ? "0" : Member + 1);
+    setChangeMember(Member === objArr.length - 1 ? 0 : Member + 1);
   };
   return (
     <div>

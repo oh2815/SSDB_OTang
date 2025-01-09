@@ -1,5 +1,5 @@
-import { ClassProps, ClassProps2 } from "./components/ClassProps";
-import ClassState from "./components/ClassState";
+import { ClassProps, ClassProps2 } from "./components/ClassProps"; // 두 개 이상 불러 올 때에는 { }를 써서 객체로 불러옴.
+import ClassState from "./components/ClassState"; // 이렇게 한 개만 불러오는 경우에는 { } 를 안써도 됨.
 import {
   FunctionProps,
   FunctionProps2,
@@ -21,7 +21,7 @@ import PororoObj from "./components/ex/PororoObj";
 function App() {
   return (
     <div>
-      {/* <h2>props 사용</h2>
+      <h2>props 사용</h2>
       <h3>클래스형 컴포넌트 props 사용해보기</h3>
       <ClassProps name="루피" color="pink" nickname="공주" />
       <ClassProps2 name="루피" color="pink" nickname="공주" fontColor="blue" />
@@ -44,7 +44,7 @@ function App() {
       <h3>실습 클래스형 State</h3>
       <PracticeClassstate />
       <h3>실습 함수형 State</h3>
-      <PracticefunctionState /> */}
+      <PracticefunctionState />
 
       {/* <h2>event</h2>
       <SyntheticEvent />
