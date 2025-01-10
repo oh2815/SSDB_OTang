@@ -17,6 +17,7 @@ import HandleEx_3 from "./components/ex/HandleEx_3";
 import HandleEx_2 from "./components/ex/HandleEx_2";
 import HandleEx_4 from "./components/ex/HandleEx_4";
 import PororoObj from "./components/ex/PororoObj";
+import EntirePractice from "./components/ex/EntirePractice";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
       <HandleEx_3 />
       <HandleEx_4 />
       <PororoObj />
+      <EntirePractice />
     </div>
   );
 }
