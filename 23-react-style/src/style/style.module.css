@@ -1,0 +1,29 @@
+.container {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.box2 {
+  background-color: beige;
+}
+
+.box2 div {
+  background-color: pink;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.first {
+  color: orange;
+  font-size: 1.5rem;
+}
+
+.second {
+  background-color: black;
+  border: 3px solid blue;
+}
