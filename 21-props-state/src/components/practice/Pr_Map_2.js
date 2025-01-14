@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Result from "../ex/Result";
 
 export default function Pr_Map_2() {
+  //
+  const inputRef1 = useRef();
+  const handleFocus1 = () => {
+    inputRef1.current.focus();
+  };
+  const inputRef2 = useRef();
+  const handleFocus2 = () => {
+    inputRef2.current.focus();
+  };
+  //
   const [comment, setComment] = useState([
     { writer: "민봉", title: "화이팅!!!" },
     { writer: "진우", title: "집에 가고 싶다..." },
@@ -18,18 +28,27 @@ export default function Pr_Map_2() {
       writer: inputWriter,
       title: inputTitle,
     };
+
+    if (newComment.writer === "") {
+      handleFocus1();
+      return;
+    } else if (newComment.title === "") {
+      handleFocus2();
+      return;
+    }
+
     setComment([...comment, newComment]);
 
     setInputTitle("");
     setInputWriter("");
     /* 
-    [...comment, newComment] == [
-        { writer: "민봉", title: "화이팅!!!" },
-        { writer: "진우", title: "집에 가고 싶다..." },
-        { writer: "규빈", title: "나는야 코딩 천재" },
-        newComment
-      ]
-        */
+[...comment, newComment] == [
+    { writer: "민봉", title: "화이팅!!!" },
+    { writer: "진우", title: "집에 가고 싶다..." },
+    { writer: "규빈", title: "나는야 코딩 천재" },
+    newComment
+  ]
+    */
   };
 
   // 검색을 실행하는 함수
@@ -73,6 +92,7 @@ export default function Pr_Map_2() {
           onChange={(e) => {
             setInputWriter(e.target.value);
           }}
+          ref={inputRef1}
         />{" "}
         <label htmlFor="title">제목: </label>
         <input
@@ -81,6 +101,7 @@ export default function Pr_Map_2() {
           id="title"
           value={inputTitle}
           onChange={(e) => setInputTitle(e.target.value)}
+          ref={inputRef2}
         />{" "}
         <button type="button" onClick={addComment}>
           작성
