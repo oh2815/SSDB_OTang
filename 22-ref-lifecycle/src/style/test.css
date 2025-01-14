@@ -1,0 +1,11 @@
+.container {
+  background-color: blue;
+  width: 500px;
+  height: 500px;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
