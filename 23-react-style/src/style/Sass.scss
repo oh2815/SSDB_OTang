@@ -1,0 +1,169 @@
+// // 변수선언 import사용하려고 주석
+// $color-red: gray;
+// $color-orange: pink;
+// $color-yellow: brown;
+// $color-green: gold;
+// $color-blue: purple;
+
+// _(언더바) 사용시
+@import "util";
+
+h4 {
+  color: blue;
+}
+.div1 {
+  width: 200px;
+  height: 200px;
+  background-color: $color-red;
+  > .div2 {
+    width: 50%;
+    height: 50%;
+    background-color: $color-orange;
+    .div3 {
+      width: 50%;
+      height: 50%;
+      background-color: $color-yellow;
+    }
+  }
+
+  .btn {
+    // .btn 클래스 공통 속성
+    display: inline-block;
+    transition: 0.4s;
+    width: 33%;
+    height: 40px;
+    color: white;
+    line-height: center;
+    text-align: center;
+    font-size: 10px;
+
+    // .btn.orangered
+    &.orangered {
+      background-color: orangered;
+    }
+
+    //.btn--opacity
+    &--opacity {
+      background-color: $color-blue;
+      opacity: 0.5;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    // .btn--blue
+    &--blue {
+      background-color: $color-blue;
+    }
+
+    &:hover {
+      cursor: pointer;
+      font-weight: 700;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  background-color: antiquewhite;
+  .box1 {
+    height: 50px;
+    background-color: $color-blue;
+    // &:nth-child(1) {
+    //   width: 100px;
+    // }
+    // &:nth-child(2) {
+    //   width: 120px;
+    // }
+    // &:nth-child(3) {
+    //   width: 140px;
+    // }
+
+    // through는 1과 3을 포함, to는 맨 뒤 3을 포함하지 않음
+    // for 문 사용하려면 @ 로 시작
+    @for $i from 1 through 3 {
+      // #{ } : 보간 -> 문자 사이에 변수를 넣거나, 연산이 아닌 곳에 값을 넣을 떄 사용
+      &:nth-child(#{$i}) {
+        // width: (80 + 20px * $i); // 연산에는 보간 X
+        // border: 1px solid $color-green;
+        @include box;
+      }
+    }
+  }
+  .circle {
+    &:nth-child(4) {
+      @include circle(blue, 1);
+    }
+    &:nth-child(5) {
+      @include circle(dodgerblue, 0.8);
+    }
+    &:nth-child(6) {
+      @include circle(#a6a6ff, 0.5);
+    }
+    $circleBgColors: (blue, dodgerblue, #a6a6ff);
+    @each $el in $circleBgColors {
+      // index ( ) : SASS에서 기본적으로 제공하는 함수
+      // index(list, value)
+      //     - 인덱스의 번호를 찾을 수 있음
+      //     - 특정 list에서 value의 index를 반환하는 함수
+      //     - index는 1번부터 시작
+
+      $index: index($circleBgColors, $el);
+      &:nth-child(#{$index + 3}) {
+        @include circle($el, 1.2 - 0.2 * $index);
+        // @include circle(); -- 인자를 전해줬는데 받아주지 않아서 error남
+      }
+    }
+  }
+  .box2 {
+    @include box2();
+
+    &:nth-of-type(4) {
+      @include box2(blue, 20px, navy);
+    }
+    &:nth-of-type(5) {
+      @include box2(orangered, 20px, black);
+    }
+  }
+}
+
+.img-test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid $color-blue;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &.src-img {
+    background-image: url("../assets/main.png");
+  }
+
+  &.public-img {
+    background-image: url("http://localhost:3000/images/main.png");
+  }
+}
+
+.practice {
+  display: flex;
+}
+.diiv1 {
+  display: flex;
+  justify-content: center;
+  background-color: $color-blue;
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  margin: 5px;
+  box-shadow: $boxShadow;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      background-image: url("../assets/practice#{$i}.png");
+    }
+  }
+}

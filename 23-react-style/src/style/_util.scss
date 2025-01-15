@@ -1,0 +1,47 @@
+// 변수선언
+$color-red: gray;
+$color-orange: pink;
+$color-yellow: brown;
+$color-green: gold;
+$color-blue: purple;
+
+$boxShadow: 2px 2px 6px #6969694d;
+
+// 매개변수 없을 때에는 소괄호 생략 가능
+// @mixin box(){}
+@mixin box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+@mixin circle($circleColor, $circleOpacity) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: inline-block;
+  background-color: $circleColor;
+  opacity: $circleOpacity;
+}
+@mixin box2(
+  $squareBgColor: $color-red,
+  $squareFontSize: 15px,
+  $squareColor: yellow
+) {
+  @include box();
+  background-color: $squareBgColor;
+  line-height: 100px;
+  text-align: center;
+  font-size: $squareFontSize;
+  color: $squareColor;
+  @if $squareBgColor==$color-red {
+    border-radius: 50%;
+  } @else if $squareColor==black {
+    border-radius: 25%;
+  } @else {
+    border-radius: 0;
+  }
+}

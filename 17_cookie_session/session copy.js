@@ -50,7 +50,13 @@ app.get("/get", (req, res) => {
 });
 
 // 세션 삭제
-app.get("/destroy", (req, res) => {});
+app.get("/destroy", (req, res) => {
+  console.log(res.session);
+  req.session.destroy((err) => {
+    if (err) throw err;
+    res.send("세션 삭제 완료");
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
