@@ -1,0 +1,38 @@
+$bodyColor-1: rgb(0, 0, 166);
+$bodyColor-2: rgb(36, 61, 206);
+$bodyColor-3: rgb(52, 118, 231);
+$bodyColor-4: rgb(47, 146, 233);
+$bodyColor-5: rgb(140, 191, 253);
+
+$BodyColor: (
+  $bodyColor-1,
+  $bodyColor-2,
+  $bodyColor-3,
+  $bodyColor-4,
+  $bodyColor-5
+);
+
+@mixin body($BodyColor) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: $BodyColor;
+  @if $BodyColor==$bodyColor-1 {
+    top: 100px;
+    left: 100px;
+  } @else if $BodyColor==$bodyColor-2 {
+    top: 150px;
+    left: 160px;
+  } @else if $BodyColor==$bodyColor-3 {
+    top: 190px;
+    left: 200px;
+  } @else if $BodyColor==$bodyColor-4 {
+    top: 240px;
+    left: 220px;
+  } @else if $BodyColor==$bodyColor-5 {
+    top: 280px;
+    left: 280px;
+    z-index: 10;
+  }
+}

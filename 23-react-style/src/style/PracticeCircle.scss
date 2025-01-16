@@ -1,0 +1,15 @@
+@import "circle";
+
+.container {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  //   background-color: yellowgreen;
+
+  @each $el in $circleColors {
+    $index: index($circleColors, $el);
+    .c#{$index} {
+      @include cirCle($el, $index);
+    }
+  }
+}
