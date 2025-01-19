@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 export default function UseCallbackEx2() {
   const [text, setText] = useState("");
-  // 랜더링이 될 때마다 다시 메모리에 저장이 되고 있음음
+  // 랜더링이 될 때마다 다시 메모리에 저장이 되고 있음
   //   const onChangeText = (e) => {
   //     setText(e.target.value);
   //   };
