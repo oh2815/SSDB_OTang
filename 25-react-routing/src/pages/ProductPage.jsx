@@ -9,6 +9,8 @@ export default function ProductPage({ products }) {
       {products?.map((product) => {
         return <ProductItem product={product} key={product.id} />;
         // 아래 내용을 ProductItem으로 Component를 만들어서 뺴줌.
+        // 아래내용에서 product라는 props를 받아주고 있으니 위에서도 product를 받아줘야함.
+        // 그리고 배열이 아니고 객체를 받아줄 것이라서  { } 사용
         //       <ul>
         //         <li>상품명:{product.name}</li>
         //         <li>판매자 이메일:{product.email}</li>

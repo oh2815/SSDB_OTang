@@ -72,6 +72,12 @@ function App() {
           path="/products"
           element={<ProductPage products={realProducts} />}
         />
+        {/* 
+        - detail 페이지에서는 전체를 보여줄 필요가 없고, 객체를 보여주면 된다.
+       -  realProducts라는 배열형태의 전체 data를 넘겨주고있는 이유 : app.js에서 라우팅을 해주고있기 때문에
+        detail page에서 필요한 정보를 app.js에서 넘겨줘야 함. 그런데 app.js에서는 사용자가 몇번 id를 눌렀는지를 모름. 
+        그래서 전체를 넘겨주고 있고 사용자가 몇번 id를 눌렀는지에 대한것은 detail page에서 params를 얻어서 처리해 줄것이다.
+        */}
         <Route
           path="/product/:productID"
           element={<ProductDetailPage products={realProducts} />}
