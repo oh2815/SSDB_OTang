@@ -15,10 +15,10 @@ function App() {
       <UseMemObj /> */}
       {/* <UseCallbackEx1 />
       <UseCallbackEx2 /> */}
-      {/* <UseReducer /> */}
+      <UseReducer />
       {/* <CustomHook /> */}
-      <Form />
-      <PrForm />
+      {/* <Form /> */}
+      {/* <PrForm /> */}
     </>
   );
 }
