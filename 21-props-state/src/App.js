@@ -65,8 +65,8 @@ function App() {
       <HandleEx_2 />
       <HandleEx_3 />
       <HandleEx_4 />
-      <PororoObj />
-      <EntirePractice /> */}
+      <PororoObj />*/}
+      <EntirePractice />
       {/* <h2>map 사용해보기</h2>
       <PropsMap />
       <PropsMap arr={arr} />
@@ -74,7 +74,7 @@ function App() {
       <PropsMap2 /> */}
       {/* <Alphabet /> */}
       {/* <Pr_Map_1 /> */}
-      <Pr_Map_2 />
+      {/* <Pr_Map_2 /> */}
     </div>
   );
 }
