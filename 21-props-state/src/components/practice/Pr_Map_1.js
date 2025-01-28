@@ -1,10 +1,12 @@
-import { use, useState } from "react";
+import { useState } from "react";
 
 export default function Pr_Map_1() {
-  const [allInfo, setAllInfo] = useState({
-    name: "태원",
-    email: "태원@naver.com",
-  });
+  const [allInfo, setAllInfo] = useState([
+    {
+      name: "태원",
+      email: "태원@naver.com",
+    },
+  ]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const addContent = () => {
@@ -29,7 +31,7 @@ export default function Pr_Map_1() {
       <input
         type="email"
         placeholder="이메일"
-        value={name}
+        value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}

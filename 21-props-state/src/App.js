@@ -25,6 +25,7 @@ import Pr_Map_1 from "./components/practice/Pr_Map_1";
 import Pr_Map_2 from "./components/practice/Pr_Map_2";
 
 function App() {
+  // propsMap에서 사용
   const arr = [
     { name: "peach", krPrice: 10000, number: 5 },
     { name: "strawberry", krPrice: 15000, number: 1 },
@@ -60,21 +61,23 @@ function App() {
       {/* <h2>event</h2>
       <SyntheticEvent />
       <Counter /> */}
+
       {/* <h2>여기부터 실습 과제</h2>
       <HandleEx />
       <HandleEx_2 />
       <HandleEx_3 />
       <HandleEx_4 />
       <PororoObj />*/}
-      <EntirePractice />
-      {/* <h2>map 사용해보기</h2>
-      <PropsMap />
-      <PropsMap arr={arr} />
+      {/* <EntirePractice /> */}
+      <h2>map 사용해보기</h2>
+      {/* <PropsMap /> */}
+      {/* porps이름 arr, props로 사용할 app.js에서 선언한 배열이름 {arr} */}
+      {/* <PropsMap arr={arr} />
       <PropsMap2 arr={arr} />
       <PropsMap2 /> */}
       {/* <Alphabet /> */}
       {/* <Pr_Map_1 /> */}
-      {/* <Pr_Map_2 /> */}
+      <Pr_Map_2 />
     </div>
   );
 }
