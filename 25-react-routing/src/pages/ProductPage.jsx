@@ -4,7 +4,7 @@ export default function ProductPage({ products }) {
   return (
     <main className="ProductPage">
       <div>여기는 상품 목록!</div>
-      {/* 물음표: 잘 data가 잘 안들어올 경우 대비  */}
+      {/* 물음표:  data가 잘 안들어올 경우 대비  */}
       {/* 여기에서의 product는 배열에서의 객체 하나를 나타냄. */}
       {products?.map((product) => {
         return <ProductItem product={product} key={product.id} />;

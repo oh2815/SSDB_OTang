@@ -14,12 +14,12 @@ function App() {
   return (
     <div>
       {/* <RefClass1 />
-      <RefClass2 /> 
-      <RefFunc1 />
-      <RefFunc2 />
-      */}
+      <RefClass2 /> */}
+      {/* <RefFunc1 />
+      <RefFunc2 /> */}
+
       {/* <LifeCycleClass /> */}
-      {/* <LifeCycleFunc /> */}
+      <LifeCycleFunc />
       {/* <Test /> */}
 
       {/* <Container>
@@ -27,7 +27,7 @@ function App() {
       </Container> */}
       {/* <RealPost /> */}
       {/* <Pr1_ColorRef /> */}
-      <Pr2_numberQuiz />
+      {/* <Pr2_numberQuiz /> */}
     </div>
   );
 }
