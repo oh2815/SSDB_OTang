@@ -19,13 +19,13 @@ function App() {
       <RefFunc2 /> */}
 
       {/* <LifeCycleClass /> */}
-      <LifeCycleFunc />
+      {/* <LifeCycleFunc /> */}
       {/* <Test /> */}
 
       {/* <Container>
         <FakePost />
       </Container> */}
-      {/* <RealPost /> */}
+      <RealPost />
       {/* <Pr1_ColorRef /> */}
       {/* <Pr2_numberQuiz /> */}
     </div>
