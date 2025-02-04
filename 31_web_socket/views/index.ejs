@@ -18,6 +18,7 @@
     </form>
 
     <script>
+      // client쪽에서는 그냥 addEventListener를 쭉 나열하면 되지만, 서버에서는 wsServer.on('connection')안에 적어줘야 한다.
       // WebSocket은 존재함.
       // ws://localhost:8080 어디하고 통신할지 설정
       // 실제로 배포를 한다면 localhost가 아니라 public IP가 들어가면 됨
@@ -35,31 +36,36 @@
       - close: 웹소켓 연결이 종료되었을 때
       */
 
+      // open이라는 이벤트를 넣어줌
       socket.addEventListener("open", (e) => {
         console.log("서버에 연결되었습니다!");
-        // console.log("e", e);
-        // socket.send("채팅방 입장~!"); // 서버에게 메세지를 보냄
+        // console.log("e", e); //  Event {isTrusted: true, type: 'open', target: WebSocket, currentTarget: WebSocket, eventPhase: 2, …}
+        socket.send("채팅방 입장~!"); // 서버에게 보내는 메세지
       });
-
+      // message 이벤트 걸어줌
       socket.addEventListener("message", (e) => {
-        console.log("서버로부터 받은 메세지", e.data);
+        console.log("서버로부터 받은 메세지", e.data); // 서버에서 보내는 message < e.data
         const li = document.createElement("li");
-        const data = JSON.parse(e.data); // json >> object
-        console.log("객체로 변환!", data);
+        const data = JSON.parse(e.data); // json >> object 애초애json으로 바꿔서 보냈기 때문에(여전히 문자열.) 반대로 객체로 바꿔서 보내줘야함
+        console.log("객체로 변환!", data); // e.data를 객체로 바꿔서 data에 담아줌
         li.textContent = `${data.name}: ${data.msg}`;
         ul.append(li);
       });
-
+      // form에 submit 이벤트가 동작할 때 ~
       chatForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+        e.preventDefault(); // 새로고침 방지
 
+        // 객체 보냄, msg와 name의 value ( input에 입력되는 값 )
         const chatData = { msg: msg.value, name: name.value };
         console.log("chatData", chatData);
-        // server에 데이터 보낼때
-        // string으로 변경해서 보내야 함
+
+        // submit 이벤트가 일어났을 때, socket.send로 chatData를 넘겨줄 것이다. -> server의 socket.on('message')의 message에 들어가게 됨
+        // 그냥 chatData로 보내게되면 [object, Object]가 나오게됨
+        // server에 데이터 보낼때 string으로 변경해서 보내야 함 : server에서 백틱으로 받아주고 있기 때문에 자동적으로 toString함수가 적용이 되므로
         // socket.send(JSON.stringify(chatData)); -->? json으로 변환해서 보내줌
         socket.send(JSON.stringify(chatData));
 
+        // 보내는 작업이 끝나면 msg와 name의 value를 빈값으로 바꿔줌
         msg.value = "";
         name.value = "";
       });
