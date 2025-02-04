@@ -18,6 +18,9 @@
     </form>
 
     <script>
+      // WebSocket은 존재함.
+      // ws://localhost:8080 어디하고 통신할지 설정
+      // 실제로 배포를 한다면 localhost가 아니라 public IP가 들어가면 됨
       const socket = new WebSocket("ws://localhost:8080");
       console.log(socket);
       const msg = document.querySelector("#msg");
@@ -25,7 +28,7 @@
       const chatForm = document.querySelector("#chat");
       const ul = document.querySelector("ul");
       /*
-      websocket 이벤트
+      websocket 이벤트 종류 
       - open: 웹소켓이 성공적으로 열렸을 때
       - message: 웹소켓으로 데이터를 주고 받을 때
       - error: 웹소켓 연결 중 오류가 발생했을 때

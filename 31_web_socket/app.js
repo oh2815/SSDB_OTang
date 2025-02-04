@@ -1,9 +1,10 @@
 // npm i ejs express ws
 const express = require("express");
-const ws = require("ws");
+const ws = require("ws"); // ws 모듈 불러오기
 const app = express();
 const PORT = 8080;
 
+// 미들웨어 설정
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
