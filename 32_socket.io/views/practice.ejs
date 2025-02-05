@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket 연습 1</title>
+
+    <!-- socket.io cdn -->
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <form id="chat">
+      <button onclick="hello()" id="hello">hello</button>
+      <button onclick="study()" id="study">study</button>
+      <button onclick="bye()" id="bye">bye</button>
+    </form>
+    <h4></h4>
+  </body>
+
+  <script>
+    const socket = io();
+
+    const h4 = document.querySelector("h4");
+
+    function hello() {
+      socket.emit("hello", "hello", (msg) => {
+        h4.textContent = `hello: ${msg}`;
+      });
+    }
+
+    function study() {
+      socket.emit("study", "study");
+      socket.on("study2", (msg) => {
+        h3.textContent = `study: ${msg}`;
+      });
+    }
+
+    function bye() {
+      socket.emit("bye", "bye");
+      socket.on("byt2", (msg) => {
+        h3.textContent = `bye: ${msg}`;
+      });
+    }
+  </script>
+</html>

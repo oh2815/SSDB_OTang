@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io emit, on 기본</title>
+
+    <!-- socket.io cdn -->
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <ul></ul>
+    <form id="chat">
+      <input type="text" id="user" placeholder="사용자명" />
+      <input type="text" id="message" placeholder="채팅 내용" />
+      <button type="submit">보내기</button>
+    </form>
+    <script>
+      // io() 함수가 소켓 생성 및 연결 설정
+      const socket = io();
+
+      // [on과 emit 사용해보기] -- event 발생시키는 중, server로 데이터 전송
+      socket.emit(
+        "event_name",
+        "hello!!",
+        10,
+        { name: "tw" },
+        (res1, res2, res3) => {
+          console.log(res1, res2, res3); // 서버에서 cb(콜백)로 넘겨줬기 때문에 받아줄 수있음
+        }
+      ); // 문자열, 숫자, 객체 다 보내줄 수있음
+
+      // 2. 위와 다르게 데이터를 다시 받아주는 콜백이 없을 경우
+      // client > server
+      socket.emit("none_cb", "콜백이 없어요!"); // 콜백없이 출발
+
+      // 3-1. server > client, 클라이언트 전체에게
+      socket.on("entire_client", (msg) => {
+        console, log("entire_client: ", msg);
+      });
+
+      // 3-2. server > client, 클라이언트 하나에게
+      socket.on("one_client", (msg) => {
+        console, log("one_client: ", msg);
+      });
+
+      // ---------- 채팅 만들기! -----------
+      socket.emit(
+        "new_message1",
+        { name: "client", message: "서버 접속" },
+        (arg) => {
+          console.log("cb arg", arg);
+        }
+      );
+
+      const chatForm = document.querySelector("#chat");
+      const user = chatForm.querySelector("#user");
+      const message = chatForm.querySelector("#message");
+      const ul = document.querySelector("ul");
+
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // 나의 메세지가 나에게만 보임
+        socket.emit(
+          "new_message1",
+          {
+            name: user.value,
+            message: message.value,
+          },
+          (data) => {
+            // data:{name:String, message:String}
+            const li = document.createElement("li");
+            li.textContent = `${data.name}: ${data.message}`;
+            ul.append(li);
+            li.style.color = "red";
+          }
+        );
+
+        // 나의 메세지가 모두에게 보임
+        socket.emit("new_message2", {
+          name: user.value,
+          message: message.value,
+        });
+      });
+      socket.on("message_all_render", (data) => {
+        // data: {name, message}
+        const li = document.createElement("li");
+        li.textContent = `${data.name}:${data.message}`;
+        ul.append(li);
+        li.style.color;
+      });
+    </script>
+  </body>
+</html>
