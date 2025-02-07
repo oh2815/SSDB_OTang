@@ -39,8 +39,28 @@ io.on("connection", (socket) => {
 
   // [4-2] 메세지를 하나의 클라이언트에게 받아서
   // 전체 클라이언트에게 전달
-  socket.on("send", (msg) => {
-    io.emit("message", { id: nickInfo[socket.id], message: msg });
+  socket.on("send", (msgData) => {
+    // msgData: {myNick, dm="socket.id" 혹은 "all", msg} => method가 달라짐
+
+    if (msgData.dm === "all") {
+      // 전체에게 보내는 것
+      io.emit("message", { id: msgData.myNick, message: msgData.msg });
+    } else {
+      let dmSocketId = msgData.dm;
+      // io.to니까 특정 클라이언트에게만 보내기.(나를 제외)
+      io.to(dmSocketId).emit("message", {
+        id: msgData.myNick,
+        message: msgData.msg,
+        isDm: true,
+      });
+
+      // 나에게만 보내기 ( 지금 연결된 클라이언트 1개 )
+      socket.emit("message", {
+        id: msgData.myNick,
+        message: msgData.msg,
+        isDm: true,
+      });
+    }
   });
 
   // [클라이언트 퇴장 공고]

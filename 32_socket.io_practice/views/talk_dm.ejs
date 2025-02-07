@@ -72,7 +72,7 @@
       }
 
       .container .msg-form input {
-        flex-basis: 80%;
+        flex-basis: 75%;
         border: none;
         border-radius: 90px;
         padding: 8px 16px;
@@ -84,7 +84,7 @@
       }
 
       .container .msg-form button {
-        flex-basis: 15%;
+        flex-basis: 12%;
         border: none;
         border-radius: 3px;
       }
@@ -130,6 +130,18 @@
         margin: 8px auto;
         font-size: 14px;
       }
+      /* 실습5 dm기능 */
+      .container .msg-form #dm-select {
+        flex-basis: 12%;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        text-align: center;
+      }
+
+      .container .speech.other.dm .msg-box {
+        background-color: #ffffff70;
+      }
     </style>
   </head>
   <body>
@@ -149,6 +161,7 @@
         </div> -->
       </section>
       <form class="msg-form" id="msg-form">
+        <select id="dm-select"></select>
         <input type="text" placeholder="메세지 입력" />
         <button>전송</button>
       </form>
@@ -162,6 +175,8 @@
       const container = document.querySelector(".container");
       const entryBox = document.querySelector(".entry-box");
       const nickInput = document.querySelector("#nickname");
+
+      const select = document.querySelector("#dm-select");
 
       let myNick; // 입장 성공했을 때 나의 닉네임 저장할 변수
 
@@ -194,22 +209,36 @@
         e.preventDefault();
         if (input.value.trim() === "") return;
         // [4-1] 버튼을 눌렀을 때, 메세지를 서버에게 전달
-        socket.emit("send", input.value);
+        // (dm일 때 객체 정보 전달)
+        const sendData = {
+          myNick: myNick,
+          dm: select.value, // dm을 보내고자하는 클라이언트의 socket.id
+          msg: input.value,
+        };
+        socket.emit("send", sendData);
         input.value = "";
       });
 
       // [4-3] 메세지를 전달받고,
       // 내메세지와 다른 클라이언트의 메세지 구분
       socket.on("message", (data) => {
-        // data:{id, message}
+        // data:{id, message isDm?} // dm이면 추가를 해준다. 근데 들어와도되고 아니어도되니까 ?
         // console.log(data.id); // 보낸 사람의 아이디
         // console.log(socket.id); // 나의 아이디
 
         const div = document.createElement("div");
         const span = document.createElement("span"); // 채팅 내용
-        span.innerText = data.message;
+        // span.innerText = data.message;
         span.classList.add("msg-box");
         div.classList.add("speech");
+
+        // DM일 경우에 말풍선 맨 앞에 [귓속말] 단어 보이도록
+        if (data.isDm) {
+          span.innerText = "[귓속말]" + data.message;
+          div.classList.add("dm");
+        } else {
+          span.innerText = data.message;
+        }
 
         if (data.id === myNick) {
           // 내가 보낸 메세지
@@ -225,6 +254,22 @@
         }
         chatContainer.append(div);
         chatContainer.scrollTop = chatContainer.scrollHeight;
+      });
+
+      // 입장이 성공하자마자 일어나는 일 : Nicks
+      socket.on("updateNicks", (nickInfo) => {
+        console.log("nickInfo", nickInfo); // {socket.id: nickname, ...}
+
+        let option = `<option value='all'>전체</option>`;
+        // 객체 반복 for ~ in
+        for (let key in nickInfo) {
+          // console.log("key", key); // socket의 id // key Y4hnoOgXsfkZJMeEAAAb
+          // console.log("value", nickInfo[key]); // 내가 입력한 닉네임 // value 111
+          option += `<option value='${key}'>${nickInfo[key]}</option>`;
+
+          console.log(option);
+          select.innerHTML = option;
+        }
       });
     </script>
   </body>
